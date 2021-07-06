@@ -3,13 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -19,131 +20,112 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=false)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private  $email;
+    private $email;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="json")
      */
-    private $password;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $first_name;
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $last_name;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $birth_date;
-
-
-    // Setters & Getters
+    private $firstName;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email): void
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
      */
-    public function getPassword()
+    public function getUserIdentifier(): string
     {
-        return $this->password;
+        return (string) $this->email;
     }
 
     /**
-     * @param mixed $password
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
      */
-    public function setPassword($password): void
+    public function getUsername(): string
     {
-        $this->password = $password;
+        return (string) $this->email;
     }
 
     /**
-     * @return mixed
+     * @see UserInterface
      */
-    public function getFirstName()
+    public function getRoles(): array
     {
-        return $this->first_name;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 
     /**
-     * @param mixed $first_name
+     * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
+     *
+     * @see PasswordAuthenticatedUserInterface
      */
-    public function setFirstName($first_name): void
+    public function getPassword(): ?string
     {
-        $this->first_name = $first_name;
+        return null;
     }
 
     /**
-     * @return mixed
+     * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
+     *
+     * @see UserInterface
      */
-    public function getLastName()
+    public function getSalt(): ?string
     {
-        return $this->last_name;
+        return null;
     }
 
     /**
-     * @param mixed $last_name
+     * @see UserInterface
      */
-    public function setLastName($last_name): void
+    public function eraseCredentials()
     {
-        $this->last_name = $last_name;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBirthDate()
+    public function getFirstName(): ?string
     {
-        return $this->birth_date;
+        return $this->firstName;
     }
 
-    /**
-     * @param mixed $birth_date
-     */
-    public function setBirthDate($birth_date): void
+    public function setFirstName(string $firstName): self
     {
-        $this->birth_date = DateTime::createFromFormat('Y-m-d', $birth_date);
-    }
+        $this->firstName = $firstName;
 
-    /**
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return
-            [
-            'id' => $this->getId(),
-            'email' => $this->getEmail(),
-            'password' => $this->getPassword(),
-            'first_name' => $this->getFirstName(),
-            'last_name' => $this->getLastName(),
-            'birth_date' => $this->getBirthDate()
-            ];
+        return $this;
     }
 }

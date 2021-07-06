@@ -4,7 +4,6 @@ namespace App\DataFixtures;
 
 use App\Entity\Hashtag;
 use App\Entity\HashToPost;
-use App\Entity\Observe;
 use App\Entity\Post;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -12,7 +11,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-    // UPDATE 'sqlite_sequence' SET 'seq' = 0 WHERE 'name' = 'table_name';
+    // delete from sqlite_sequence where name='your_table';
 
     private static $hashtags = [
         'IT',
@@ -103,19 +102,8 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i < 12; $i++)
+        for ($i = 1; $i < 8; $i++)
         {
-            $user = new User();
-            $user->setEmail('simon'.$i.'@xyz.com');
-
-            $user->setFirstName('sim'.$i);
-            $user->setLastName('MCDonald'.$i);
-            $user->setPassword(rand(1,100) * $i * rand(10,40));
-            $new_date = date( "Y-m-d", strtotime( "2009-01-31 +".$i." month" ) );
-
-            $user->setBirthDate($new_date);
-
-            $manager->persist($user);
             if($i < 7){
                 $post = new Post();
                 $post->setContent(self::$postContent[$i]);
@@ -123,11 +111,12 @@ class AppFixtures extends Fixture
                 $manager->persist($post);
             }
 
-            if($i < 8){
+            /*if($i < 8){
                 $observe = new Observe();
-                $observe->setIdHash(self::$observeHash[$i]);
                 $observe->setIdUser(self::$observeUsers[$i]);
-            }
+                $observe->setIdHash(self::$observeHash[$i]);
+                $manager->persist($observe);
+            }*/
         }
         $manager->flush();
 
