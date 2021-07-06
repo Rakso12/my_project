@@ -8,6 +8,7 @@ parameters:
 services:
     # default configuration for services in *this* file
     _defaults:
+        public: true
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
@@ -20,6 +21,5 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
-
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
