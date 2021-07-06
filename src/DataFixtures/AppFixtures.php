@@ -3,6 +3,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\Hashtag;
+use App\Entity\HashToPost;
+use App\Entity\Observe;
 use App\Entity\Post;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -10,7 +12,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-    protected $fk;
+    // UPDATE 'sqlite_sequence' SET 'seq' = 0 WHERE 'name' = 'table_name';
 
     private static $hashtags = [
         'IT',
@@ -60,10 +62,47 @@ class AppFixtures extends Fixture
         Mauris porttitor fermentum ligula sed varius.',
     ];
 
+    private static $hashToHTP = [
+        5,
+        6,
+        7,
+        5,
+        6,
+        7,
+    ];
+
+    private static $postToHTP = [
+        1,
+        2,
+        3,
+        4,
+        5,
+    ];
+
+    private static $observeHash = [
+        1,
+        2,
+        3,
+        4,
+        1,
+        2,
+        4,
+        3,
+    ];
+
+    private static $observeUsers = [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+    ];
+
     public function load(ObjectManager $manager)
     {
-        // $product = new Product();
-        // $manager->persist($product);
         for ($i = 1; $i < 12; $i++)
         {
             $user = new User();
@@ -77,12 +116,17 @@ class AppFixtures extends Fixture
             $user->setBirthDate($new_date);
 
             $manager->persist($user);
-
             if($i < 7){
                 $post = new Post();
                 $post->setContent(self::$postContent[$i]);
                 $post->setAuthor($i);
                 $manager->persist($post);
+            }
+
+            if($i < 8){
+                $observe = new Observe();
+                $observe->setIdHash(self::$observeHash[$i]);
+                $observe->setIdUser(self::$observeUsers[$i]);
             }
         }
         $manager->flush();
@@ -91,6 +135,14 @@ class AppFixtures extends Fixture
             $hashtag = new Hashtag();
             $hashtag->setName(self::$hashtags[$i]);
             $manager->persist($hashtag);
+        }
+        $manager->flush();
+
+        for($i = 0; $i < 5; $i++){
+            $hashToPost = new HashToPost();
+            $hashToPost->setIdHash(self::$hashToHTP[$i]);
+            $hashToPost->setIdPost(self::$postToHTP[$i]);
+            $manager->persist($hashToPost);
         }
         $manager->flush();
     }

@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\HashToPostRepository;
+use App\Repository\ObserveRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=HashToPostRepository::class)
+ * @ORM\Entity(repositoryClass=ObserveRepository::class)
  */
-class HashToPost
+class Observe
 {
     /**
      * @ORM\Id
@@ -20,15 +20,12 @@ class HashToPost
     /**
      * @ORM\Column(type="integer", nullable=false)
      */
-    private $id_post;
+    private $id_user;
 
     /**
      * @ORM\Column(type="integer", nullable=false)
      */
     private $id_hash;
-
-
-    // Setters & Getters
 
     public function getId(): ?int
     {
@@ -38,17 +35,17 @@ class HashToPost
     /**
      * @return mixed
      */
-    public function getIdPost()
+    public function getIdUser()
     {
-        return $this->id_post;
+        return $this->id_user;
     }
 
     /**
-     * @param mixed $id_post
+     * @param mixed $id_user
      */
-    public function setIdPost($id_post): void
+    public function setIdUser($id_user): void
     {
-        $this->id_post = $id_post;
+        $this->id_user = $id_user;
     }
 
     /**
@@ -65,15 +62,5 @@ class HashToPost
     public function setIdHash($id_hash): void
     {
         $this->id_hash = $id_hash;
-    }
-
-    public function toArray(): array
-    {
-        return
-        [
-            'id' => $this->id,
-            'id_post' => $this->id_post,
-            'id_hash' => $this->id_hash
-        ];
     }
 }

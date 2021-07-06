@@ -39,8 +39,7 @@ class UserController
         $lastName = $data['last_name'];
         $birth_day = $data['birth_date'];
 
-        if(empty($email) || empty($password) ||empty($firstName) || empty($lastName) || empty($birth_day))
-        {
+        if(empty($email) || empty($password) ||empty($firstName) || empty($lastName) || empty($birth_day)) {
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
 
