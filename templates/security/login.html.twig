@@ -1,25 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Floppa - Log in!{% endblock %}
 
 {% block body %}
 <form method="post">
     {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="alert alert-danger">{{  error.messageKey|trans(error.messageData, 'security') }} </div>
     {% endif %}
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            You are logged in as {{ app.user.username }},   <a href="{{ path('app_logout') }}">Logout</a>
+
+            Can you go to main page <a href="{{ path('app_homepage') }}"> Home Page </a>
         </div>
-    {% endif %}
+
+    {% else %}
 
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus> <br> <Br>
     <label for="inputPassword">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
+    <br><br>
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
@@ -38,5 +41,9 @@
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
+    <div style="margin-top: 20px;">
+        Can you go to welcome page <a href="{{ path('app_welcomepage') }}"> Home Page </a>
+    </div>
+    {% endif %}
 </form>
 {% endblock %}
