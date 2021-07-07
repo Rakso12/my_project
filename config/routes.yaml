@@ -13,3 +13,6 @@ app_homepage:
 app_welcomepage:
     path: /
     controller: App\Controller\MainRouteController:mainpage
+
+oauth2:
+    resource: '@LeagueOAuth2ServerBundle/Resources/config/routes.php'
