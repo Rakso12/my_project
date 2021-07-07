@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <h1>  Welcome {{ app.user.username }}</h1>
+    If you want you can click it -> <a href="{{ path('app_logout') }}"><button>LOGOUT</button></a>
+    <br><br>
+    <div>
+        Some div for context.
+    </div>
+
+{% endblock %}

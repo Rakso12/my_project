@@ -1,3 +1,15 @@
 index:
     path: /
-    controller: App\Controller\MyFirstController::homepage
+    controller: App\Controller\MainRouteController::mainpage
+
+app_logout:
+    path: /logout
+    methods: GET
+
+app_homepage:
+    path: /homepage
+    controller: App\Controller\MainRouteController:homepage
+
+app_welcomepage:
+    path: /
+    controller: App\Controller\MainRouteController:mainpage

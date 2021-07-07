@@ -34,6 +34,11 @@ class User implements UserInterface
      */
     private $firstName;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +93,13 @@ class User implements UserInterface
         return $this;
     }
 
+    public function setPassword($password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
     /**
      * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
      *
@@ -95,7 +107,7 @@ class User implements UserInterface
      */
     public function getPassword(): ?string
     {
-        return null;
+        return $this->password;
     }
 
     /**
