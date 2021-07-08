@@ -26,6 +26,15 @@ security:
                 path: app_logout
                 # where to redirect after logout
                 # target: app_any_route
+        # config for OAuth2
+        api_token:
+            pattern: ^/api/token$
+            security: false
+        api:
+            pattern: ^/api
+            security: true
+            stateless: true
+            oauth2: true
 
 
             # activate different ways to authenticate
