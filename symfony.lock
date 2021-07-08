@@ -118,29 +118,11 @@
     "league/oauth2-server": {
         "version": "8.3.1"
     },
-    "league/oauth2-server-bundle": {
-        "version": "0.1-dev"
-    },
     "nikic/php-parser": {
         "version": "v4.11.0"
     },
-    "nyholm/psr7": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "0cd4d2d0e7f646fda75f9944f747a56e6ed13d4c"
-        },
-        "files": [
-            "./config/packages/nyholm_psr7.yaml"
-        ]
-    },
     "paragonie/random_compat": {
         "version": "v9.99.100"
-    },
-    "php-http/message-factory": {
-        "version": "v1.0.2"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -150,9 +132,6 @@
     },
     "psr/event-dispatcher": {
         "version": "1.0.0"
-    },
-    "psr/http-factory": {
-        "version": "1.0.1"
     },
     "psr/http-message": {
         "version": "1.0.1"
@@ -232,6 +211,9 @@
             "./.env"
         ]
     },
+    "symfony/form": {
+        "version": "v5.3.3"
+    },
     "symfony/framework-bundle": {
         "version": "5.3",
         "recipe": {
@@ -269,6 +251,9 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/options-resolver": {
+        "version": "v5.3.0"
+    },
     "symfony/orm-pack": {
         "version": "v2.1.0"
     },
@@ -276,6 +261,9 @@
         "version": "v5.3.3"
     },
     "symfony/polyfill-intl-grapheme": {
+        "version": "v1.23.0"
+    },
+    "symfony/polyfill-intl-icu": {
         "version": "v1.23.0"
     },
     "symfony/polyfill-intl-normalizer": {
@@ -304,9 +292,6 @@
     },
     "symfony/proxy-manager-bridge": {
         "version": "v5.3.0"
-    },
-    "symfony/psr-http-message-bridge": {
-        "version": "v2.1.0"
     },
     "symfony/routing": {
         "version": "5.3",
@@ -391,6 +376,19 @@
     },
     "symfony/twig-pack": {
         "version": "v1.0.1"
+    },
+    "symfony/validator": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "3eb8df139ec05414489d55b97603c5f6ca0c44cb"
+        },
+        "files": [
+            "./config/packages/test/validator.yaml",
+            "./config/packages/validator.yaml"
+        ]
     },
     "symfony/var-dumper": {
         "version": "v5.3.3"
