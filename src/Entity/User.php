@@ -39,6 +39,11 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $lastName;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $password;
 
     /**
@@ -46,22 +51,71 @@ class User implements UserInterface
      */
     private $isVerified = false;
 
+    // Setters & Getters for common data
+
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return $this
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     * @return $this
+     */
+    public function setFirstName(string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     */
+    public function setLastName($lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    // Setters & Getters for authentication
 
     /**
      * A visual identifier that represents this user.
@@ -73,6 +127,7 @@ class User implements UserInterface
         return (string) $this->email;
     }
 
+    // Use email like username because i don't need login
     /**
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      */
@@ -93,6 +148,10 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param array $roles
+     * @return $this
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -100,6 +159,10 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @param $password
+     * @return $this
+     */
     public function setPassword($password): self
     {
         $this->password = $password;
@@ -117,6 +180,7 @@ class User implements UserInterface
         return $this->password;
     }
 
+    // I don't use Salt yet.
     /**
      * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
      *
@@ -136,23 +200,18 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
+    /**
+     * @return bool
+     */
     public function isVerified(): bool
     {
         return $this->isVerified;
     }
 
+    /**
+     * @param bool $isVerified
+     * @return $this
+     */
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
