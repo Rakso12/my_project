@@ -17,5 +17,9 @@ app_welcomepage:
     path: /
     controller: App\Controller\MainRouteController:mainpage
 
+app_try:
+    path: /trylogin
+    controller: App\Controller\SecurityController:oauthLogin
+
 oauth2:
     resource: '@LeagueOAuth2ServerBundle/Resources/config/routes.php'

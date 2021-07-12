@@ -129,7 +129,6 @@ class User implements UserInterface
         return (string) $this->email;
     }
 
-    // Use email like username because i don't need login
     /**
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      */
