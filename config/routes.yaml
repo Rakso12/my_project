@@ -7,15 +7,5 @@ app_logout:
     path: /logout
     methods: GET
 
-#route to homepage for logged in users
-app_homepage:
-    path: /homepage
-    controller: App\Controller\MainRouteController:homepage
-
-#route main page
-app_welcomepage:
-    path: /
-    controller: App\Controller\MainRouteController:mainpage
-
 oauth2:
     resource: '@LeagueOAuth2ServerBundle/Resources/config/routes.php'

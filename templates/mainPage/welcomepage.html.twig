@@ -3,21 +3,23 @@
 {% block title %} Floppa - make your day better! {% endblock %}
 
 {% block body %}
-    <h1>  Welcome in Floppa site! </h1>
+    <div style="height: 30px; margin-bottom: 20px;">
+        <h1>  Welcome in Floppa site! </h1>
+    </div>
 
     {% if app.user %}
 
-        <div style="height: 100px; font-size: 20px;">
-            <p> Em? Really?! You are logged in {{ app.user.username }}  <a href="{{ path('app_login') }}"><button> Sign In Now! </button></a>
+        <div style="height: 40px; font-size: 20px; color: #9d0005 ">
+            <p> Em? Really?! You are logged in {{ app.user.username }}  <a href="{{ path('/logout') }}"><button> Sign In Now! </button></a>
         </div>
 
     {% else %}
 
-        <div style="height: 100px; font-size: 20px; color: #6d6a6e">
-        <p> If you want create account, you must wait few days :) </p>
+        <div style="height: 40px; font-size: 20px;">
+        <p> If you want create account, you must go there. <a href="{{ path('app_register') }}"><button> Join Now ! </button></a> </p>
         </div>
 
-        <div style="height: 100px; font-size: 20px;">
+        <div style="height: 40px; font-size: 20px;">
         <p> But... if you want sign in you can made it! <a href="{{ path('app_login') }}"><button> Sign In Now! </button></a>
         </div>
 

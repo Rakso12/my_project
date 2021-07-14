@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Join Now - Floppa {% endblock %}
+
+{% block body %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }},   <a href="{{ path('app_logout') }}">Logout</a>
+
+            Can you go to main page <a href="{{ path('app_homepage') }}"> Home Page </a>
+        </div>
+
+    {% else %}
+
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <h1>Join to Floppa World NOW!</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.firstName) }}
+        {{ form_row(registrationForm.lastName) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+
+        <div style="margin-top: 40px;">
+            Also can go to welcome page <a href="{{ path('app_welcomepage') }}"> Home Page </a>
+        </div>
+    {% endif %}
+{% endblock %}
