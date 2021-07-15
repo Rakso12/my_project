@@ -9,6 +9,8 @@ security:
             # possible hashing algorithm (starting from Symfony 5.3 this is "bcrypt")
             algorithm: auto
     providers:
+        # database:
+        #    id: App\Provider\UserProvider
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
@@ -19,7 +21,10 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            # anonymous: true
             lazy: true
+            json_login:
+                check_path: /api/userlogin
             provider: app_user_provider
             custom_authenticator: App\Security\LoginFormAuthenticator
             logout:

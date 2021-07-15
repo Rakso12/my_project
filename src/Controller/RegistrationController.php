@@ -5,17 +5,84 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
 {
+    /**
+     * @Route("/api/register", name="api_register", methods={"POST"})
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function registerUser(UserPasswordEncoderInterface  $passwordEncoder, Request $request): JsonResponse
+    {
+        $user = new User();
+
+        $data = json_decode($request->getContent(), true);
+
+        $email = $data["email"];
+        $password = $data['password'];
+        $passwordConfirmation = $data["password_confirmation"];
+        $firstName = $data["first_name"];
+        $lastName = $data["last_name"];
+
+        $errors = [];
+
+        if(empty($email) ||
+            empty($password) ||
+            empty($passwordConfirmation) ||
+            empty($firstName) ||
+            empty($lastName)
+        ){
+            $errors[] = $password."You forgot about some items, please add all parameters";
+        }
+
+        if($password != $passwordConfirmation){
+            $errors[] = "Password does not math the password confirmation.";
+        }
+
+        if(strlen($password) < 8){
+            $errors[] = "Password should be at least 8 characters.";
+        }
+
+        if(!$errors) {
+            $encodedPassword = $passwordEncoder->encodePassword($user, $password);
+            $user->setEmail($email);
+            $user->setPassword($encodedPassword);
+            $user->setFirstName($firstName);
+            $user->setLastName($lastName);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->json([
+                'user' => $user
+            ]);
+        }
+
+        return $this->json([
+            'errors' => $errors,
+            'Remember about add items' => [
+                'email',
+                'password',
+                'password_confirmation',
+                'first_name',
+                'last_name'
+            ],
+        ], 400);
+    }
+
+
+
     private $emailVerifier;
 
     public function __construct(EmailVerifier $emailVerifier)
@@ -54,7 +121,7 @@ class RegistrationController extends AbstractController
 //                          ->htmlTemplate('registration/confirmation_email.html.twig')
 //                  );
 
-            return $this->redirectToRoute('app_welcomepage');
+            return $this->redirectToRoute('index');
         }
 
         return $this->render('registration/register.html.twig', [

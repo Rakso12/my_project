@@ -225,4 +225,5 @@ class User implements UserInterface
         return in_array(self::ROLE_ADMIN, $this->getRoles());
     }
 
+
 }
