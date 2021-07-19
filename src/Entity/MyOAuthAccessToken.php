@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MyOAuthAccessTokenRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass=MyOAuthAccessTokenRepository::class)
@@ -33,14 +34,14 @@ class MyOAuthAccessToken
     private $make_date;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $user_id;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string")
      */
-    private $scopes = [];
+    private $scopes = "";
 
     /**
      * @ORM\Column(type="boolean")
@@ -52,11 +53,18 @@ class MyOAuthAccessToken
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getIdentifier(): ?string
     {
         return $this->identifier;
     }
 
+    /**
+     * @param string|null $identifier
+     * @return $this
+     */
     public function setIdentifier(?string $identifier): self
     {
         $this->identifier = $identifier;
@@ -64,11 +72,18 @@ class MyOAuthAccessToken
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getClientId(): ?string
     {
         return $this->client_id;
     }
 
+    /**
+     * @param string|null $client_id
+     * @return $this
+     */
     public function setClientId(?string $client_id): self
     {
         $this->client_id = $client_id;
@@ -76,47 +91,72 @@ class MyOAuthAccessToken
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getMakeDate(): ?\DateTimeInterface
     {
         return $this->make_date;
     }
 
-    public function setMakeDate(?\DateTimeInterface $make_date): self
+    /**
+     * @return $this
+     * @throws \Exception
+     */
+    public function setMakeDate(): self
     {
-        $this->make_date = $make_date;
-
+        $date = new DateTime(date('Y-m-d H:i:s'));
+        $this->make_date = $date;
         return $this;
     }
 
-    public function getUserId(): ?int
+    /**
+     * @return string|null
+     */
+    public function getUserId(): ?string
     {
         return $this->user_id;
     }
 
-    public function setUserId(?int $user_id): self
+    /**
+     * @param string|null $user_id
+     * @return $this
+     */
+    public function setUserId(?string $user_id): self
     {
         $this->user_id = $user_id;
 
         return $this;
     }
 
-    public function getScopes(): ?array
+    /**
+     * @return string
+     */
+    public function getScopes(): string
     {
         return $this->scopes;
     }
 
-    public function setScopes(array $scopes): self
+    /**
+     * @param string $scopes
+     */
+    public function setScopes(string $scopes): void
     {
         $this->scopes = $scopes;
-
-        return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function getIsActive(): ?bool
     {
         return $this->is_active;
     }
 
+    /**
+     * @param bool $is_active
+     * @return $this
+     */
     public function setIsActive(bool $is_active): self
     {
         $this->is_active = $is_active;

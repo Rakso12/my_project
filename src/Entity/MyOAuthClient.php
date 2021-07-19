@@ -47,16 +47,26 @@ class MyOAuthClient
      */
     private $is_active = true;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getIdentifier(): ?string
     {
         return $this->identifier;
     }
 
+    /**
+     * @param string|null $identifier
+     * @return $this
+     */
     public function setIdentifier(?string $identifier): self
     {
         $this->identifier = $identifier;
@@ -64,11 +74,18 @@ class MyOAuthClient
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string|null $name
+     * @return $this
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -76,11 +93,18 @@ class MyOAuthClient
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getSecret(): ?string
     {
         return $this->secret;
     }
 
+    /**
+     * @param string|null $secret
+     * @return $this
+     */
     public function setSecret(?string $secret): self
     {
         $this->secret = $secret;
@@ -88,11 +112,18 @@ class MyOAuthClient
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function getIsActive(): ?bool
     {
         return $this->is_active;
     }
 
+    /**
+     * @param bool $is_active
+     * @return $this
+     */
     public function setIsActive(bool $is_active): self
     {
         $this->is_active = $is_active;
@@ -131,6 +162,4 @@ class MyOAuthClient
     {
         $this->scopes = $scopes;
     }
-
-
 }
