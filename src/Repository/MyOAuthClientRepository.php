@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\MyOAuthClient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -14,23 +15,83 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class MyOAuthClientRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $manager;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, MyOAuthClient::class);
+        $this->manager = $manager;
     }
 
-    public function saveClient($identifier, $name, $secret, $grants, $scopes)
+    public function saveClient($identifier, $name, $secret)
     {
         $newClient = new MyOAuthClient();
         $newClient->setIdentifier($identifier);
         $newClient->setName($name);
         $newClient->setSecret($secret);
 
-        # TODO zmienić scopy i granty na wrzucanie tablicy do bazy
-
-        $newClient->setGrants($grants);
-        $newClient->setScopes($scopes);
+        $this->manager->persist($newClient);
+        $this->manager->flush();
     }
+
+    public function clientExist($identifier): bool
+    {
+        $isExist = $this->findBy(['identifier' => $identifier]);
+        if ($isExist){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function checkSecret($identifier, $secret): bool
+    {
+        $isExits = $this->findOneBy(['identifier' => $identifier]);
+        $temp = $isExits->getSecret();
+
+        if ($temp === $secret){
+            return true;
+        }
+        return false;
+    }
+
+    public function updateParameters($identifier, $grant, $scope)
+    {
+        $existingClient = $this->manager->getRepository(MyOAuthClient::class)->findOneBy(['identifier' => $identifier]);
+
+        if(strlen($grant) != 0 && $grant != "null"){
+            $existingClient->setGrants($grant);
+        }
+
+        # TODO: Dodać sprawdzanie czy scope istnieje (+ dodać typy scopów)
+
+        if(strlen($scope) != 0 && $scope != "null"){
+            $existingClient->setScopes($scope);
+        }
+
+        $this->manager->flush();
+    }
+
+    public function deActive($identifier, $secret)
+    {
+        $existingClient = $this->manager->getRepository(MyOAuthClient::class)->findOneBy(['identifier' => $identifier]);
+
+        $existingClient->setIsActive(false);
+
+        $this->manager->flush();
+    }
+
+    public function upActive($identifier, $secret)
+    {
+        $existingClient = $this->manager->getRepository(MyOAuthClient::class)->findOneBy(['identifier' => $identifier]);
+
+        $existingClient->setIsActive(true);
+
+        $this->manager->flush();
+    }
+
+
 
     // /**
     //  * @return MyOAuthClient[] Returns an array of MyOAuthClient objects

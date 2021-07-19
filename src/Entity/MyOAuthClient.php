@@ -33,19 +33,19 @@ class MyOAuthClient
     private $secret;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string", length=255)
      */
-    private $grants = [];
+    private $grants = "";
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string", length=255)
      */
-    private $scopes = [];
+    private $scopes = "";
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_active;
+    private $is_active = true;
 
     public function getId(): ?int
     {
@@ -88,30 +88,6 @@ class MyOAuthClient
         return $this;
     }
 
-    public function getGrants(): ?array
-    {
-        return $this->grants;
-    }
-
-    public function setGrants(array $grants): self
-    {
-        $this->grants = $grants;
-
-        return $this;
-    }
-
-    public function getScopes(): ?array
-    {
-        return $this->scopes;
-    }
-
-    public function setScopes(array $scopes): self
-    {
-        $this->scopes = $scopes;
-
-        return $this;
-    }
-
     public function getIsActive(): ?bool
     {
         return $this->is_active;
@@ -123,4 +99,38 @@ class MyOAuthClient
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getGrants()
+    {
+        return $this->grants;
+    }
+
+    /**
+     * @param mixed $grants
+     */
+    public function setGrants($grants): void
+    {
+        $this->grants = $grants;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getScopes()
+    {
+        return $this->scopes;
+    }
+
+    /**
+     * @param mixed $scopes
+     */
+    public function setScopes($scopes): void
+    {
+        $this->scopes = $scopes;
+    }
+
+
 }
