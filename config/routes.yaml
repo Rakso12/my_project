@@ -1,6 +1,6 @@
 index:
     path: /
-    controller: App\Controller\MainRouteController::mainpage
+    controller: App\Controller\MainRouteController::index
 
 #route to logout page
 app_logout:

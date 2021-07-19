@@ -17,12 +17,21 @@ class HashToPostRepository extends ServiceEntityRepository
 {
     private $manager;
 
+    /**
+     * HashToPostRepository constructor.
+     * @param ManagerRegistry $registry
+     * @param EntityManagerInterface $manager
+     */
     public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, HashToPost::class);
         $this->manager = $manager;
     }
 
+    /**
+     * @param $id_post
+     * @param $id_hash
+     */
     public function saveHashToPost($id_post, $id_hash)
     {
         $newHashToPost = new HashToPost();
@@ -33,6 +42,10 @@ class HashToPostRepository extends ServiceEntityRepository
         $this->manager->flush();
     }
 
+    /**
+     * @param $hashToPost
+     * @return mixed
+     */
     public function updateHashToPost($hashToPost)
     {
         $this->manager->persist($hashToPost);
@@ -41,15 +54,15 @@ class HashToPostRepository extends ServiceEntityRepository
         return $hashToPost;
     }
 
+    /**
+     * @param HashToPost $hashToPost
+     */
     public function removeHashToPost(HashToPost $hashToPost)
     {
         $this->manager->remove($hashToPost);
         $this->manager->flush();
     }
 
-    // /**
-    //  * @return HashToPost[] Returns an array of HashToPost objects
-    //  */
     /*
     public function findByExampleField($value)
     {

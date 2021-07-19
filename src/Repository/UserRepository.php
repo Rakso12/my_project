@@ -14,6 +14,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class UserRepository extends ServiceEntityRepository
 {
+    //private $loginFormAuthenticator;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
@@ -23,6 +25,10 @@ class UserRepository extends ServiceEntityRepository
     //  * @return User[] Returns an array of User objects
     //  */
 
+    /**
+     * @param $email
+     * @return int|mixed|string
+     */
     public function findByEmail($email)
     {
         return $this->createQueryBuilder('u')
@@ -32,9 +38,8 @@ class UserRepository extends ServiceEntityRepository
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-
 
     /*
     public function findOneBySomeField($value): ?User
