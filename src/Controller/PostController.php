@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Repository\MyOAuthAccessTokenRepository;
 use App\Repository\PostRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,10 +19,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController
 {
     private $postRepository;
+    private $myOAuthAccessTokenRepository;
 
-    public function __construct(PostRepository $postRepository)
+    public function __construct(PostRepository $postRepository, MyOAuthAccessTokenRepository $myOAuthAccessTokenRepository)
     {
         $this->postRepository = $postRepository;
+        $this->myOAuthAccessTokenRepository = $myOAuthAccessTokenRepository;
     }
 
     /**
@@ -35,13 +38,26 @@ class PostController
 
         $content = $data['content'];
         $author = $data['author'];
+        $token = $data['token'];
 
-        if(empty($content) || empty($author)){
+        if(empty($content) ||
+            empty($author) ||
+            empty($token)
+        ){
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
 
-        $this->postRepository->savePost($content, $author);
-        return new JsonResponse(['status' => 'Post created.'], Response::HTTP_CREATED);
+        // sprawdzanie czy token istnieje
+        // sprawdzanie czy token ma tego samego usera co autor
+        // sprawdzanie czy token jest aktywny
+        // sprawdzanie czy token ma dobrego scope
+
+        if($this->myOAuthAccessTokenRepository->checkTokenTerm() &&
+            $this->myOAuthAccessTokenRepository->isExistToken()
+        ){
+            $this->postRepository->savePost($content, $author);
+            return new JsonResponse(['status' => 'Post created.'], Response::HTTP_CREATED);
+        }
     }
 
     /**

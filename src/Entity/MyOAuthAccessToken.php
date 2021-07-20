@@ -29,7 +29,7 @@ class MyOAuthAccessToken
     private $client_id;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $make_date;
 

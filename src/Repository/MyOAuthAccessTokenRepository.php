@@ -6,6 +6,7 @@ use App\Entity\MyOAuthAccessToken;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use DateTime;
 
 /**
  * @method MyOAuthAccessToken|null find($id, $lockMode = null, $lockVersion = null)
@@ -81,11 +82,30 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
      */
     public function isExistToken($token)
     {
-        $isExits = $this->findOneBy(['identifier' => $token]);
+        $isExist = $this->findOneBy(['identifier' => $token]);
 
-        if($isExits){
+        if($isExist){
             return true;
         }
+        return false;
+    }
+
+    public function checkTokenTerm($token)
+    {
+        $isExist = $this->findOneBy(['identifier' => $token]);
+        $date = new DateTime(date('Y-m-d H:i:s'));
+        $datemp1 = $isExist->getMakeDate();
+        $datemp2 = clone($datemp1);
+        $datemp2->modify('+1 day');
+
+        if($isExist){
+            if($datemp1 < $date && $datemp2 > $date){
+                return true;
+            }
+            $isExist->setIsActive(false);
+            return false;
+        }
+
         return false;
     }
 

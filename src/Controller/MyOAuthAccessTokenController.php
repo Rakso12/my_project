@@ -79,4 +79,20 @@ class MyOAuthAccessTokenController
 
         return new JsonResponse($errors);
     }
+
+    /**
+     * @Route("/checkit", name="check_date", methods={"GET"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function check(Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+        $token = $data['identifier'];
+
+        if(!$this->myOAuthAccessTokenRepository->checkTokenTerm($token)){
+            return new JsonResponse(['Access denited - The token is out of date.']);
+        }
+        return new JsonResponse(['ok']);
+    }
 }
