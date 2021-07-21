@@ -32,11 +32,12 @@ class PostRepository extends ServiceEntityRepository
      * @param $content
      * @param $author
      */
-    public function savePost($content, $author)
+    public function savePost($content, $author, $hashtags)
     {
         $newPost = new Post();
         $newPost->setContent($content);
         $newPost->setAuthor($author);
+        $newPost->setHashtags($hashtags);
 
         $this->manager->persist($newPost);
         $this->manager->flush();
@@ -61,6 +62,12 @@ class PostRepository extends ServiceEntityRepository
     {
         $this->manager->remove($post);
         $this->manager->flush();
+    }
+
+    public function getPosts($authorId)
+    {
+        $posts = $this->findBy(array('author' => $authorId));
+        return $posts;
     }
 
     /*

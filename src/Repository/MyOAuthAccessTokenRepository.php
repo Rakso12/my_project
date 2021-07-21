@@ -67,9 +67,9 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
      */
     public function getTokenScope($token)
     {
-        $tokenDetails = $this->findOneBy(['identifier' => $token]);
+        $tokenDetails = $this->manager->getRepository(MyOAuthAccessToken::class)->findOneBy(['identifier' => $token]);
 
-        $scope = $tokenDetails['scope'];
+        $scope = $tokenDetails->getScopes();
 
         $scopeArray = preg_split("/[\s,]+/", $scope);
 
@@ -80,7 +80,7 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
      * @param $token
      * @return bool
      */
-    public function isExistToken($token)
+    public function isExistToken($token): bool
     {
         $isExist = $this->findOneBy(['identifier' => $token]);
 
@@ -90,7 +90,7 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
         return false;
     }
 
-    public function checkTokenTerm($token)
+    public function checkTokenTerm($token): bool
     {
         $isExist = $this->findOneBy(['identifier' => $token]);
         $date = new DateTime(date('Y-m-d H:i:s'));
@@ -107,6 +107,29 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
         }
 
         return false;
+    }
+
+    public function checkTokenUser($author, $token): bool
+    {
+        $isExist = $this->findOneBy(['identifier' => $token]);
+
+        if($isExist->getUserId() == $author){
+            return true;
+        }
+        return false;
+    }
+
+    public function checkScope($scope, $token)
+    {
+        $scopeArray = $this->getTokenScope($token);
+        $flag = false;
+
+        foreach ($scopeArray as $item){
+            if($item == $scope){
+                $flag = true;
+            }
+        }
+        return $flag;
     }
 
     /*

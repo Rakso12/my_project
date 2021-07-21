@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Repository\MyOAuthAccessTokenRepository;
 use App\Repository\PostRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,11 +21,13 @@ class PostController
 {
     private $postRepository;
     private $myOAuthAccessTokenRepository;
+    private $userRepository;
 
-    public function __construct(PostRepository $postRepository, MyOAuthAccessTokenRepository $myOAuthAccessTokenRepository)
+    public function __construct(PostRepository $postRepository, MyOAuthAccessTokenRepository $myOAuthAccessTokenRepository, UserRepository $userRepository)
     {
         $this->postRepository = $postRepository;
         $this->myOAuthAccessTokenRepository = $myOAuthAccessTokenRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -37,27 +40,116 @@ class PostController
         $data = json_decode($request->getContent(),true);
 
         $content = $data['content'];
+        $hashtags = $data['hashtags'];
+
+        // TODO Wybieranie hashtagów z contentu i dodawanie do bazy
+
         $author = $data['author'];
         $token = $data['token'];
 
+        $scope = 'add';
+        $errors = [];
+
         if(empty($content) ||
             empty($author) ||
-            empty($token)
+            empty($token) ||
+            empty($hashtags)
         ){
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
 
-        // sprawdzanie czy token istnieje
-        // sprawdzanie czy token ma tego samego usera co autor
-        // sprawdzanie czy token jest aktywny
-        // sprawdzanie czy token ma dobrego scope
+        if(!$this->myOAuthAccessTokenRepository->checkTokenTerm($token)){
+            $errors[] = "Token not valid.";
+        }
 
-        if($this->myOAuthAccessTokenRepository->checkTokenTerm() &&
-            $this->myOAuthAccessTokenRepository->isExistToken()
-        ){
-            $this->postRepository->savePost($content, $author);
+        if(!$this->myOAuthAccessTokenRepository->checkTokenUser($author, $token)){
+            $errors[] = "Author is not correct";
+        }
+
+        if(!$this->myOAuthAccessTokenRepository->checkScope($scope, $token)){
+            $errors[] = "Scope not valid";
+        }
+
+        if(!$errors){
+            $user = $this->userRepository->findOneBy(['email' => $author]);
+            $authorId = $user->getId();
+            $this->postRepository->savePost($content, $authorId, $hashtags);
             return new JsonResponse(['status' => 'Post created.'], Response::HTTP_CREATED);
         }
+
+        return new JsonResponse($errors);
+    }
+
+    /**
+     * @Route("/post/showmypost", name="show_all_my_posts", methods={"POST"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function showMyPost(Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $token = $data['token'];
+        $author = $data['author'];
+
+        $errors = [];
+
+        if(empty($token) ||
+            empty($author)){
+            $errors[] = "Expecting mandatory parameters!";
+        }
+
+        if(!$errors){
+            if($this->myOAuthAccessTokenRepository->checkTokenTerm($token) &&
+                $this->myOAuthAccessTokenRepository->checkTokenUser($author, $token)
+            ) {
+                $user = $this->userRepository->findOneBy(['email' => $author]);
+                $authorId = $user->getId();
+
+                $posts = $this->postRepository->getPosts($authorId);
+
+                return new JsonResponse(var_dump($posts));
+            }
+            $errors[] = "Data not valid.";
+            return new JsonResponse($errors);
+        }
+        return new JsonResponse($errors);
+
+        //TODO zmienić trochę wyświetlane dane (wrzucić w tablice zamiast obiekt cały)
+    }
+
+    /**
+     * @Route("/post/showmyobserve", name="show_all_observe_posts", methods={"POST"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function showObserve(Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $user = $data['username'];
+        $token = $data['token'];
+
+        $errors = [];
+
+        if(empty($user) ||
+            empty($token)
+        ){
+            $errors[] = "Expecting mandatory parameters!";
+        }
+
+        if($this->myOAuthAccessTokenRepository->checkTokenTerm($token) &&
+        $this->myOAuthAccessTokenRepository->checkTokenUser($user, $token)
+        ){
+            // wyciągnięcie obserwowanych userów/ hashtagów
+
+            // wyciągnięcie z tego postów o danym userze / hashtagu
+
+            // zwrócenie postów
+
+            return new JsonResponse(['DO ZROBIENIA TO JEST']);
+        }
+        return new JsonResponse($errors);
     }
 
     /**

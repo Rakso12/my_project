@@ -8,6 +8,7 @@ use App\Entity\Post;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service_locator;
 
 class AppFixtures extends Fixture
 {
@@ -17,7 +18,22 @@ class AppFixtures extends Fixture
         'IT',
         'NYC',
         'PRz',
-        'OPTeam'
+        'OPTeam',
+        'Comarch',
+        'Ideo',
+        'PGS',
+        'Fabrity',
+    ];
+
+    private static $hashtags2 = [
+        'Marketing',
+        'NewWorld',
+        'Carrer',
+        'Safe',
+        'Keep',
+        'Sleep',
+        'Lorem',
+        'Ipsum',
     ];
 
     private static $postContent = [
@@ -108,6 +124,8 @@ class AppFixtures extends Fixture
                 $post = new Post();
                 $post->setContent(self::$postContent[$i]);
                 $post->setAuthor($i);
+                $tmp = self::$hashtags[$i]." ".self::$hashtags2[$i];
+                $post->setHashtags($tmp);
                 $manager->persist($post);
             }
 
