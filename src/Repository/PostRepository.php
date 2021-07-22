@@ -6,6 +6,7 @@ use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @method Post|null find($id, $lockMode = null, $lockVersion = null)
@@ -68,6 +69,35 @@ class PostRepository extends ServiceEntityRepository
     {
         $posts = $this->findBy(array('author' => $authorId));
         return $posts;
+    }
+
+    public function getPostByHash($hashtag){
+
+        $allPosts = $this->findAll();
+
+        $tmp = [];
+        $i = 0;
+
+        foreach ($allPosts as $post)
+        {
+            $temp = $post->getHashtags();
+            $hashtagArray = preg_split("/[\s,]+/", $temp);
+
+            foreach ($hashtagArray as $hash){
+                if($hash == $hashtag){
+                    $tmp[] = $post;
+                    break;
+                }
+            }
+        }
+
+        return $tmp;
+    }
+
+    public function getByFollowingPorperties($hashtags, $users)
+    {
+        // dodać zczytywanie hashtagów + separacje oraz wysyłanie listy postów spowrotem wykluczając powtórzenia
+        return true;
     }
 
     /*

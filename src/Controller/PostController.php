@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Repository\FollowingRepository;
 use App\Repository\MyOAuthAccessTokenRepository;
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
@@ -22,12 +23,14 @@ class PostController
     private $postRepository;
     private $myOAuthAccessTokenRepository;
     private $userRepository;
+    private $followingRepository;
 
-    public function __construct(PostRepository $postRepository, MyOAuthAccessTokenRepository $myOAuthAccessTokenRepository, UserRepository $userRepository)
+    public function __construct(PostRepository $postRepository, MyOAuthAccessTokenRepository $myOAuthAccessTokenRepository, UserRepository $userRepository, FollowingRepository $followingRepository)
     {
         $this->postRepository = $postRepository;
         $this->myOAuthAccessTokenRepository = $myOAuthAccessTokenRepository;
         $this->userRepository = $userRepository;
+        $this->followingRepository = $followingRepository;
     }
 
     /**
@@ -41,9 +44,6 @@ class PostController
 
         $content = $data['content'];
         $hashtags = $data['hashtags'];
-
-        // TODO Wybieranie hashtagów z contentu i dodawanie do bazy
-
         $author = $data['author'];
         $token = $data['token'];
 
@@ -81,7 +81,7 @@ class PostController
     }
 
     /**
-     * @Route("/post/showmypost", name="show_all_my_posts", methods={"POST"})
+     * @Route("/post/showmypost", name="show_all_my_post",methods={"POST"})
      * @param Request $request
      * @return JsonResponse
      */
@@ -92,11 +92,16 @@ class PostController
         $token = $data['token'];
         $author = $data['author'];
 
+        $scope = 'read';
         $errors = [];
 
         if(empty($token) ||
             empty($author)){
             $errors[] = "Expecting mandatory parameters!";
+        }
+
+        if(!$this->myOAuthAccessTokenRepository->checkScope($scope, $token)){
+            $errors[] = "Scope not valid";
         }
 
         if(!$errors){
@@ -115,20 +120,24 @@ class PostController
         }
         return new JsonResponse($errors);
 
-        //TODO zmienić trochę wyświetlane dane (wrzucić w tablice zamiast obiekt cały)
+        // TODO zmienić trochę wyświetlane dane (wrzucić w tablice zamiast obiekt cały)
     }
 
     /**
-     * @Route("/post/showmyobserve", name="show_all_observe_posts", methods={"POST"})
+     * @Route("/post/showmyfollow", name="show_all_following_post", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
      */
-    public function showObserve(Request $request): JsonResponse
+    public function showMyFollow(Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 
         $user = $data['username'];
         $token = $data['token'];
+
+        $scope = 'read';
+        $followingUsers = [];
+        $followingHashtags = [];
 
         $errors = [];
 
@@ -138,16 +147,67 @@ class PostController
             $errors[] = "Expecting mandatory parameters!";
         }
 
+        if(!$this->myOAuthAccessTokenRepository->checkScope($scope, $token)){
+            $errors[] = "Scope not valid";
+        }
+
         if($this->myOAuthAccessTokenRepository->checkTokenTerm($token) &&
         $this->myOAuthAccessTokenRepository->checkTokenUser($user, $token)
         ){
+            $tmp = $this->followingRepository->findOneBy(['user_email' => $user]);
+
+            $followingUsers = $tmp->getUsers();
+            $followingHashtags = $tmp->getHashtags();
+
+            $posts = $this->postRepository->getByFollowingProperties($followingHashtags, $followingUsers);
+
+            return new JsonResponse($posts);
+            // i tutaj muszę to przeserializować żeby dostać się do userów / hashtagów i ich później użyć
+
             // wyciągnięcie obserwowanych userów/ hashtagów
 
             // wyciągnięcie z tego postów o danym userze / hashtagu
 
             // zwrócenie postów
 
-            return new JsonResponse(['DO ZROBIENIA TO JEST']);
+           // return new JsonResponse(['DO ZROBIENIA TO JEST']);
+        }
+        return new JsonResponse($errors);
+    }
+
+    /**
+     * @Route("/post/showbyhashtag", name="show_all_post_with_that_hashtag", methods={"POST"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function showByHashtag(Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $user = $data['username'];
+        $token = $data['token'];
+        $hashtag = $data['hashtag'];
+
+        $scope = 'read';
+        $errors = [];
+
+        if(empty($user) ||
+            empty($token) ||
+            empty($hashtag)
+        ){
+            $errors[] = "Expecting mandatory parameters!";
+        }
+
+        if(!$this->myOAuthAccessTokenRepository->checkScope($scope, $token)){
+            $errors[] = "Scope not valid";
+        }
+
+        if($this->myOAuthAccessTokenRepository->checkTokenTerm($token) &&
+            $this->myOAuthAccessTokenRepository->checkTokenUser($user, $token)
+        ){
+            $posts = $this->postRepository->getPostByHash($hashtag);
+
+            return new JsonResponse(var_dump($posts));
         }
         return new JsonResponse($errors);
     }

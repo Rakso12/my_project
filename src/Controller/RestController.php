@@ -27,7 +27,9 @@ class RestController extends AbstractController
             '/oauth/deactive' => 'make client not active { POST }',
             '/oauth/makeactive' => 'make client active { POST }',
             '---- POST ENDPOINTS --------------' => '',
-            '/post/add' => 'add new post with content and author'
+            '/post/add' => 'add new post with content and author',
+            '/post/showmyobserve' => 'show all post for user',
+            '/post/showbyhash' => 'show all post with hash',
         ];
 
         return new JsonResponse($urlsList, Response::HTTP_OK);

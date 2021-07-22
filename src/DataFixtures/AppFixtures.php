@@ -128,13 +128,6 @@ class AppFixtures extends Fixture
                 $post->setHashtags($tmp);
                 $manager->persist($post);
             }
-
-            /*if($i < 8){
-                $observe = new Observe();
-                $observe->setIdUser(self::$observeUsers[$i]);
-                $observe->setIdHash(self::$observeHash[$i]);
-                $manager->persist($observe);
-            }*/
         }
         $manager->flush();
 
