@@ -104,20 +104,23 @@ class PostController
             $errors[] = "Scope not valid";
         }
 
+        if(!$this->myOAuthAccessTokenRepository->checkTokenTerm($token)){
+            $errors[] = "Token is out of date.";
+        }
+
+        if(!$this->myOAuthAccessTokenRepository->checkTokenUser($author, $token)){
+            $errors[] = "Token is not your - Check user.";
+        }
+
         if(!$errors){
-            if($this->myOAuthAccessTokenRepository->checkTokenTerm($token) &&
-                $this->myOAuthAccessTokenRepository->checkTokenUser($author, $token)
-            ) {
                 $user = $this->userRepository->findOneBy(['email' => $author]);
                 $authorId = $user->getId();
 
                 $posts = $this->postRepository->getPosts($authorId);
 
                 return new JsonResponse(var_dump($posts));
-            }
-            $errors[] = "Data not valid.";
-            return new JsonResponse($errors);
         }
+
         return new JsonResponse($errors);
 
         // TODO zmienić trochę wyświetlane dane (wrzucić w tablice zamiast obiekt cały)
@@ -151,9 +154,15 @@ class PostController
             $errors[] = "Scope not valid";
         }
 
-        if($this->myOAuthAccessTokenRepository->checkTokenTerm($token) &&
-        $this->myOAuthAccessTokenRepository->checkTokenUser($user, $token)
-        ){
+        if(!$this->myOAuthAccessTokenRepository->checkTokenTerm($token)){
+            $errors[] = "Token out of date.";
+        }
+
+        if(!$this->myOAuthAccessTokenRepository->checkTokenUser($user, $token)){
+            $errors[] = "Token is not this user.";
+        }
+
+        if(!$errors){
             $tmp = $this->followingRepository->findOneBy(['user_email' => $user]);
 
             $followingUsers = $tmp->getUsers();
@@ -161,7 +170,8 @@ class PostController
 
             $posts = $this->postRepository->getByFollowingProperties($followingHashtags, $followingUsers);
 
-            return new JsonResponse($posts);
+            return new JsonResponse(var_dump($posts));
+
             // i tutaj muszę to przeserializować żeby dostać się do userów / hashtagów i ich później użyć
 
             // wyciągnięcie obserwowanych userów/ hashtagów
@@ -172,6 +182,7 @@ class PostController
 
            // return new JsonResponse(['DO ZROBIENIA TO JEST']);
         }
+
         return new JsonResponse($errors);
     }
 

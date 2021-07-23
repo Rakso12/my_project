@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Post;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,15 +19,18 @@ class PostRepository extends ServiceEntityRepository
 {
     private $manager;
 
+    private $userRepository;
+
     /**
      * PostRepository constructor.
      * @param ManagerRegistry $registry
      * @param EntityManagerInterface $manager
      */
-    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager, UserRepository $userRepository)
     {
         parent::__construct($registry, Post::class);
         $this->manager = $manager;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -94,10 +98,46 @@ class PostRepository extends ServiceEntityRepository
         return $tmp;
     }
 
-    public function getByFollowingPorperties($hashtags, $users)
+    public function getByFollowingProperties($hashtags, $users)
     {
+        $hashtagArray = preg_split("/[\s,]+/", $hashtags);
+        $usersArray = preg_split("/[\s,]+/", $users);
+
+        $postsTmp = $this->findAll();
+        $posts = [];
+
+        $flag = false;
+
+        foreach ($postsTmp as $post) {
+
+            $postHashArray = preg_split("/[\s,]+/",$post->getHashtags());
+
+            foreach ($hashtagArray as $funcHash){
+                foreach ($postHashArray as $postHash){
+                    if($funcHash == $postHash && $flag == false){
+                        $posts[] = $post;
+                        $flag = true;
+                    }
+                }
+            }
+
+            if($flag == false) {
+                foreach ($usersArray as $oneUser) {
+                    $author = $post->getAuthor();
+                    $tmpAuthor = $this->userRepository->findOneBy(['id' => $author]);
+                    $authorEmail = $tmpAuthor->getEmail();
+
+                    if ($authorEmail == $oneUser){
+                        $posts[] = $post;
+                    }
+                }
+            }
+            $flag = false;
+        }
+
         // dodać zczytywanie hashtagów + separacje oraz wysyłanie listy postów spowrotem wykluczając powtórzenia
-        return true;
+        return $posts;
+
     }
 
     /*
