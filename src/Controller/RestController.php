@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RestController extends AbstractController
 {
     /**
+     * This is endpoint for listing all endpoints in my API
      * @Route("/api", name="api", methods={"GET"})
      */
     public function getEndpoints(): Response
@@ -28,7 +29,7 @@ class RestController extends AbstractController
             '/oauth/makeactive' => 'make client active { POST }',
             '---- POST ENDPOINTS --------------' => '',
             '/post/add' => 'add new post with content and author',
-            '/post/showmyobserve' => 'show all post for user',
+            '/post/showmyfollow' => 'show all post for user',
             '/post/showbyhash' => 'show all post with hash',
         ];
 

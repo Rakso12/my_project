@@ -34,6 +34,11 @@ class PostController
     }
 
     /**
+     * This is endpoint function to adding new post. Mandatory data:
+     * - author (user email - string)
+     * - token (access token - string)
+     * - content (post content - string)
+     * - hashtags (hashtag string with one space between hashtags)
      * @Route("/post/add", name="add_hashtag", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -81,6 +86,9 @@ class PostController
     }
 
     /**
+     * This is endpoint function to show all user's post. Mandatory data:
+     * - token (string)
+     * - author  (email - string)
      * @Route("/post/showmypost", name="show_all_my_post",methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -127,6 +135,9 @@ class PostController
     }
 
     /**
+     * This is endpoint function to show all following post (by hashtags and users). Mandatory data:
+     * - token (string)
+     * - username (email - string)
      * @Route("/post/showmyfollow", name="show_all_following_post", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -139,9 +150,6 @@ class PostController
         $token = $data['token'];
 
         $scope = 'read';
-        $followingUsers = [];
-        $followingHashtags = [];
-
         $errors = [];
 
         if(empty($user) ||
@@ -171,22 +179,16 @@ class PostController
             $posts = $this->postRepository->getByFollowingProperties($followingHashtags, $followingUsers);
 
             return new JsonResponse(var_dump($posts));
-
-            // i tutaj muszę to przeserializować żeby dostać się do userów / hashtagów i ich później użyć
-
-            // wyciągnięcie obserwowanych userów/ hashtagów
-
-            // wyciągnięcie z tego postów o danym userze / hashtagu
-
-            // zwrócenie postów
-
-           // return new JsonResponse(['DO ZROBIENIA TO JEST']);
         }
 
         return new JsonResponse($errors);
     }
 
     /**
+     * This is endpoint function to show all post with hashtag. Mandatory data:
+     * - username (email - string)
+     * - token (string)
+     * - hashtag (string)
      * @Route("/post/showbyhashtag", name="show_all_post_with_that_hashtag", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -222,6 +224,10 @@ class PostController
         }
         return new JsonResponse($errors);
     }
+
+    // ---------------------------------------------------------------------------------------
+    // ---------------------------- DO PRZEROBIENIA NA OAUTH LUB USUNIĘCIA -------------------
+    // ---------------------------------------------------------------------------------------
 
     /**
      * @Route("/posts/{id}", name="get_one_post", methods={"GET"})

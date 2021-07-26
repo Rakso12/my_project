@@ -73,9 +73,9 @@ class Post
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getHashtags()
+    public function getHashtags(): string
     {
         return $this->hashtags;
     }

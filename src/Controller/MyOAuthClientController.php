@@ -20,6 +20,10 @@ class MyOAuthClientController
     }
 
     /**
+     * This is function for creating new client on OAuth2 Server. Mandatory data:
+     * - identifier (ssl public key)
+     * - secret (ssl private key)
+     * - name (name of application - string)
      * @Route("/oauth/makeclient", name="make_client_endpoint", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -66,6 +70,10 @@ class MyOAuthClientController
     }
 
     /**
+     * This is function to update client Scope or Grant. Mandatory data:
+     * - identifier (client_id)
+     * - grant (string with space separator between grants)
+     * - scope (string with space separator between scopes)
      * @Route("/oauth/updateclient", name="update_client_endpoint", methods={"POST"})
      */
     public function updateClient(Request $request): JsonResponse
@@ -99,6 +107,9 @@ class MyOAuthClientController
     }
 
     /**
+     * This is function for deactivating the client. Mandatory data:
+     * - identifier (public key)
+     * - secret (private key)
      * @Route("/oauth/deactive", name="deactive_client", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -134,6 +145,9 @@ class MyOAuthClientController
     }
 
     /**
+     * This is function for activating the client. Mandatory data:
+     * - identifier (public key)
+     * - secret (private key)
      * @Route("/oauth/makeactive", name="make_active", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -164,7 +178,6 @@ class MyOAuthClientController
                 return new JsonResponse(['Status' => 'Client not exist']);
             }
         }
-
         return new JsonResponse($errors);
     }
 }

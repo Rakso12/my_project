@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\MyOAuthAccessToken;
+use App\Entity\MyOAuthClient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -33,11 +34,10 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
      * @return string
      * @throws \Exception
      */
-    public function generateToken()
+    public function generateToken(): string
     {
         $tmp = random_bytes(20);
-        $token = bin2hex($tmp);
-        return $token;
+        return bin2hex($tmp);
     }
 
     /**
@@ -57,6 +57,10 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
         $newToken->setIsActive(true);
         $newToken->setMakeDate();
 
+        $tmpClient = $this->manager->getRepository(MyOAuthClient::class)->findOneBy(['identifier' => $client_id]);
+        $tmpScopes = $tmpClient->getScopes();
+        $newToken->setScopes($tmpScopes);
+
         $this->manager->persist($newToken);
         $this->manager->flush();
     }
@@ -71,9 +75,7 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
 
         $scope = $tokenDetails->getScopes();
 
-        $scopeArray = preg_split("/[\s,]+/", $scope);
-
-        return $scopeArray;
+        return preg_split("/[\s,]+/", $scope);
     }
 
     /**
@@ -105,7 +107,6 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
             $isExist->setIsActive(false);
             return false;
         }
-
         return false;
     }
 
@@ -119,7 +120,7 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
         return false;
     }
 
-    public function checkScope($scope, $token)
+    public function checkScope($scope, $token): bool
     {
         $scopeArray = $this->getTokenScope($token);
         $flag = false;
