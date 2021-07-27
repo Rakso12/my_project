@@ -21,8 +21,8 @@ class MyOAuthClientController
 
     /**
      * This is function for creating new client on OAuth2 Server. Mandatory data:
-     * - identifier (ssl public key)
-     * - secret (ssl private key)
+     * - client_id (ssl public key)
+     * - client_secret (ssl private key)
      * - name (name of application - string)
      * @Route("/oauth/makeclient", name="make_client_endpoint", methods={"POST"})
      * @param Request $request
@@ -32,24 +32,24 @@ class MyOAuthClientController
     {
         $data = json_decode($request->getContent(), true);
 
-        $identifier = $data['identifier'];
+        $client_id = $data['client_id'];
+        $client_secret = $data['client_secret'];
         $name = $data['name'];
-        $secret = $data['secret'];
 
         $errors = [];
 
-        if(empty($identifier) ||
+        if(empty($client_id) ||
             empty($name) ||
-            empty($secret)
+            empty($client_secret)
         ){
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
 
-        if(strlen($identifier)!=10){
+        if(strlen($client_id)!=10){
             $errors[] = "Identifier is not valid.";
         }
 
-        if(strlen($secret)!=20){
+        if(strlen($client_secret)!=20){
             $errors[] = "Secret is not valid.";
         }
 
@@ -58,8 +58,8 @@ class MyOAuthClientController
         }
 
         if(!$errors) {
-            if (!$this->myOAuthClientRepository->clientExist($identifier)) {
-                $this->myOAuthClientRepository->saveClient($identifier, $name, $secret);
+            if (!$this->myOAuthClientRepository->clientExist($client_id)) {
+                $this->myOAuthClientRepository->saveClient($client_id, $name, $client_secret);
                 return new JsonResponse(['Status' => 'Client added'], Response::HTTP_CREATED);
             } else {
                 return new JsonResponse(['Status' => 'Client exist']);
@@ -71,7 +71,7 @@ class MyOAuthClientController
 
     /**
      * This is function to update client Scope or Grant. Mandatory data:
-     * - identifier (client_id)
+     * - client_id (client_id)
      * - grant (string with space separator between grants)
      * - scope (string with space separator between scopes)
      * @Route("/oauth/updateclient", name="update_client_endpoint", methods={"POST"})
@@ -80,13 +80,13 @@ class MyOAuthClientController
     {
         $data = json_decode($request->getContent(), true);
 
-        $identifier = $data['identifier'];
+        $client_id = $data['client_id'];
         $grant = $data['grant'];
         $scope = $data['scope'];
 
         $errors = [];
 
-        if(empty($identifier) ||
+        if(empty($client_id) ||
             empty($grant) ||
             empty($scope)
         ){
@@ -94,8 +94,8 @@ class MyOAuthClientController
         }
 
         if(!$errors){
-            if($this->myOAuthClientRepository->clientExist($identifier)){
-                $this->myOAuthClientRepository->updateParameters($identifier, $grant, $scope);
+            if($this->myOAuthClientRepository->clientExist($client_id)){
+                $this->myOAuthClientRepository->updateParameters($client_id, $grant, $scope);
                 return new JsonResponse(['Status' => 'Client update success.'], Response::HTTP_OK);
             }
             else {
@@ -108,8 +108,8 @@ class MyOAuthClientController
 
     /**
      * This is function for deactivating the client. Mandatory data:
-     * - identifier (public key)
-     * - secret (private key)
+     * - client_id (public key)
+     * - client_secret (private key)
      * @Route("/oauth/deactive", name="deactive_client", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -118,22 +118,22 @@ class MyOAuthClientController
     {
         $data = json_decode($request->getContent(), true);
 
-        $identifier = $data['identifier'];
-        $secret = $data['secret'];
+        $client_id = $data['client_id'];
+        $client_secret = $data['client_secret'];
 
         $errors = [];
 
-        if(empty($identifier)
-            || empty($secret)
+        if(empty($client_id)
+            || empty($client_secret)
         ){
             $errors[] = "You forgot about some items, please add all parameters";
         }
 
         if(!$errors){
-            if($this->myOAuthClientRepository->clientExist($identifier) &&
-                $this->myOAuthClientRepository->checkSecret($identifier, $secret)
+            if($this->myOAuthClientRepository->clientExist($client_id) &&
+                $this->myOAuthClientRepository->checkSecret($client_id, $client_secret)
             ){
-                $this->myOAuthClientRepository->deActive($identifier, $secret);
+                $this->myOAuthClientRepository->deActive($client_id, $client_secret);
                 return new JsonResponse(['Status' => 'Client deactive.']);
             }
             else {
@@ -146,8 +146,8 @@ class MyOAuthClientController
 
     /**
      * This is function for activating the client. Mandatory data:
-     * - identifier (public key)
-     * - secret (private key)
+     * - client_id (public key)
+     * - client_secret (private key)
      * @Route("/oauth/makeactive", name="make_active", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -156,22 +156,22 @@ class MyOAuthClientController
     {
         $data = json_decode($request->getContent(), true);
 
-        $identifier = $data['identifier'];
-        $secret = $data['secret'];
+        $client_id = $data['client_id'];
+        $client_secret = $data['client_secret'];
 
         $errors = [];
 
-        if(empty($identifier)
-            || empty($secret)
+        if(empty($client_id)
+            || empty($client_secret)
         ){
             $errors[] = "You forgot about some items, please add all parameters";
         }
 
         if(!$errors){
-            if($this->myOAuthClientRepository->clientExist($identifier) &&
-                $this->myOAuthClientRepository->checkSecret($identifier, $secret)
+            if($this->myOAuthClientRepository->clientExist($client_id) &&
+                $this->myOAuthClientRepository->checkSecret($client_id, $client_secret)
             ){
-                $this->myOAuthClientRepository->upActive($identifier, $secret);
+                $this->myOAuthClientRepository->upActive($client_id, $client_secret);
                 return new JsonResponse(['Status' => 'Client active.']);
             }
             else {

@@ -18,13 +18,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class PostRepository extends ServiceEntityRepository
 {
     private $manager;
-
     private $userRepository;
 
     /**
      * PostRepository constructor.
      * @param ManagerRegistry $registry
      * @param EntityManagerInterface $manager
+     * @param UserRepository $userRepository
      */
     public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager, UserRepository $userRepository)
     {
@@ -36,6 +36,7 @@ class PostRepository extends ServiceEntityRepository
     /**
      * @param $content
      * @param $author
+     * @param $hashtags
      */
     public function savePost($content, $author, $hashtags)
     {
@@ -69,12 +70,20 @@ class PostRepository extends ServiceEntityRepository
         $this->manager->flush();
     }
 
+    /**
+     * @param $authorId
+     * @return Post[]
+     */
     public function getPosts($authorId)
     {
         $posts = $this->findBy(array('author' => $authorId));
         return $posts;
     }
 
+    /**
+     * @param $hashtag
+     * @return array
+     */
     public function getPostByHash($hashtag){
 
         $allPosts = $this->findAll();
@@ -98,6 +107,11 @@ class PostRepository extends ServiceEntityRepository
         return $tmp;
     }
 
+    /**
+     * @param $hashtags
+     * @param $users
+     * @return array
+     */
     public function getByFollowingProperties($hashtags, $users)
     {
         $hashtagArray = preg_split("/[\s,]+/", $hashtags);

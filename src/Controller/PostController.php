@@ -49,14 +49,14 @@ class PostController
 
         $content = $data['content'];
         $hashtags = $data['hashtags'];
-        $author = $data['author'];
+        $username = $data['username'];
         $token = $data['token'];
 
         $scope = 'add';
         $errors = [];
 
         if(empty($content) ||
-            empty($author) ||
+            empty($username) ||
             empty($token) ||
             empty($hashtags)
         ){
@@ -67,7 +67,7 @@ class PostController
             $errors[] = "Token not valid.";
         }
 
-        if(!$this->myOAuthAccessTokenRepository->checkTokenUser($author, $token)){
+        if(!$this->myOAuthAccessTokenRepository->checkTokenUser($username, $token)){
             $errors[] = "Author is not correct";
         }
 
@@ -76,7 +76,7 @@ class PostController
         }
 
         if(!$errors){
-            $user = $this->userRepository->findOneBy(['email' => $author]);
+            $user = $this->userRepository->findOneBy(['email' => $username]);
             $authorId = $user->getId();
             $this->postRepository->savePost($content, $authorId, $hashtags);
             return new JsonResponse(['status' => 'Post created.'], Response::HTTP_CREATED);
@@ -98,13 +98,13 @@ class PostController
         $data = json_decode($request->getContent(), true);
 
         $token = $data['token'];
-        $author = $data['author'];
+        $username = $data['username'];
 
         $scope = 'read';
         $errors = [];
 
         if(empty($token) ||
-            empty($author)){
+            empty($username)){
             $errors[] = "Expecting mandatory parameters!";
         }
 
@@ -116,12 +116,12 @@ class PostController
             $errors[] = "Token is out of date.";
         }
 
-        if(!$this->myOAuthAccessTokenRepository->checkTokenUser($author, $token)){
+        if(!$this->myOAuthAccessTokenRepository->checkTokenUser($username, $token)){
             $errors[] = "Token is not your - Check user.";
         }
 
         if(!$errors){
-                $user = $this->userRepository->findOneBy(['email' => $author]);
+                $user = $this->userRepository->findOneBy(['email' => $username]);
                 $authorId = $user->getId();
 
                 $posts = $this->postRepository->getPosts($authorId);
