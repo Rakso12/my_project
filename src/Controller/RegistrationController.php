@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Following;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
@@ -25,6 +26,7 @@ class RegistrationController extends AbstractController
     public function registerUser(UserPasswordEncoderInterface  $passwordEncoder, Request $request): JsonResponse
     {
         $user = new User();
+        $follow = new Following();
 
         $data = json_decode($request->getContent(), true);
 
@@ -62,6 +64,13 @@ class RegistrationController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
+            $entityManager->flush();
+
+            $follow->setUserEmail($email);
+            $follow->setHashtags('');
+            $follow->setUsers('');
+
+            $entityManager->persist($follow);
             $entityManager->flush();
 
             return $this->json([

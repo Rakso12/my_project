@@ -29,6 +29,12 @@ class Post
      */
     private $author;
 
+    /**
+     * @ORM\Column(type="string")
+     * @var
+     */
+    private $hashtags = '';
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,13 +72,30 @@ class Post
         $this->author = $author;
     }
 
+    /**
+     * @return string
+     */
+    public function getHashtags(): string
+    {
+        return $this->hashtags;
+    }
+
+    /**
+     * @param mixed $hashtags
+     */
+    public function setHashtags($hashtags): void
+    {
+        $this->hashtags = $hashtags;
+    }
+
     public function toArray(): array
     {
         return
         [
             'id' => $this->getId(),
             'content' => $this->getContent(),
-            'author' => $this->getAuthor()
+            'author' => $this->getAuthor(),
+            'hashtags' => $this->getHashtags()
         ];
     }
 }

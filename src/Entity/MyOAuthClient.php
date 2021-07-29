@@ -132,9 +132,9 @@ class MyOAuthClient
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getGrants()
+    public function getGrants(): string
     {
         return $this->grants;
     }
@@ -148,9 +148,9 @@ class MyOAuthClient
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getScopes()
+    public function getScopes(): string
     {
         return $this->scopes;
     }

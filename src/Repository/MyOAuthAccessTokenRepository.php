@@ -3,9 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\MyOAuthAccessToken;
+use App\Entity\MyOAuthClient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use DateTime;
 
 /**
  * @method MyOAuthAccessToken|null find($id, $lockMode = null, $lockVersion = null)
@@ -32,11 +34,10 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
      * @return string
      * @throws \Exception
      */
-    public function generateToken()
+    public function generateToken(): string
     {
         $tmp = random_bytes(20);
-        $token = bin2hex($tmp);
-        return $token;
+        return bin2hex($tmp);
     }
 
     /**
@@ -56,6 +57,10 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
         $newToken->setIsActive(true);
         $newToken->setMakeDate();
 
+        $tmpClient = $this->manager->getRepository(MyOAuthClient::class)->findOneBy(['identifier' => $client_id]);
+        $tmpScopes = $tmpClient->getScopes();
+        $newToken->setScopes($tmpScopes);
+
         $this->manager->persist($newToken);
         $this->manager->flush();
     }
@@ -66,27 +71,66 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
      */
     public function getTokenScope($token)
     {
-        $tokenDetails = $this->findOneBy(['identifier' => $token]);
+        $tokenDetails = $this->manager->getRepository(MyOAuthAccessToken::class)->findOneBy(['identifier' => $token]);
 
-        $scope = $tokenDetails['scope'];
+        $scope = $tokenDetails->getScopes();
 
-        $scopeArray = preg_split("/[\s,]+/", $scope);
-
-        return $scopeArray;
+        return preg_split("/[\s,]+/", $scope);
     }
 
     /**
      * @param $token
      * @return bool
      */
-    public function isExistToken($token)
+    public function isExistToken($token): bool
     {
-        $isExits = $this->findOneBy(['identifier' => $token]);
+        $isExist = $this->findOneBy(['identifier' => $token]);
 
-        if($isExits){
+        if($isExist){
             return true;
         }
         return false;
+    }
+
+    public function checkTokenTerm($token): bool
+    {
+        $isExist = $this->findOneBy(['identifier' => $token]);
+        $date = new DateTime(date('Y-m-d H:i:s'));
+        $datemp1 = $isExist->getMakeDate();
+        $datemp2 = clone($datemp1);
+        $datemp2->modify('+1 day');
+
+        if($isExist){
+            if($datemp1 < $date && $datemp2 > $date){
+                return true;
+            }
+            $isExist->setIsActive(false);
+            return false;
+        }
+        return false;
+    }
+
+    public function checkTokenUser($author, $token): bool
+    {
+        $isExist = $this->findOneBy(['identifier' => $token]);
+
+        if($isExist->getUserId() == $author){
+            return true;
+        }
+        return false;
+    }
+
+    public function checkScope($scope, $token): bool
+    {
+        $scopeArray = $this->getTokenScope($token);
+        $flag = false;
+
+        foreach ($scopeArray as $item){
+            if($item == $scope){
+                $flag = true;
+            }
+        }
+        return $flag;
     }
 
     /*
