@@ -6,6 +6,7 @@ use App\Repository\MyOAuthClientRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ *
  * @ORM\Entity(repositoryClass=MyOAuthClientRepository::class)
  */
 class MyOAuthClient

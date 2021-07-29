@@ -6,11 +6,13 @@ use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Entity to store data about the users posts.
  * @ORM\Entity(repositoryClass=PostRepository::class)
  */
 class Post
 {
     /**
+     * Id of post.
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -18,23 +20,27 @@ class Post
     private $id;
 
     /**
+     * Content of post.
      * @ORM\Column(type="text")
-     * @var
      */
     private $content;
 
     /**
+     * Author of post.
      * @ORM\Column(type="integer")
-     * @var
      */
     private $author;
 
     /**
+     * String with hashtags.
      * @ORM\Column(type="string")
-     * @var
      */
     private $hashtags = '';
 
+
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +94,9 @@ class Post
         $this->hashtags = $hashtags;
     }
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         return
