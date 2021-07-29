@@ -16,7 +16,44 @@ public.key
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
+bin/commonmark
+bin/jsonlint*
+bin/validate-json*
+bin/phpstan
+bin/var-dump-server
+bin/plantuml
+
+# Build folder and vendor folder are generated code; no need to version this
+build/
+.phpdoc/cache/
+data/examples/MariosPizzeria/build/
+vendor/
+node_modules/
+tools/
+temp/
+var/
+*.phar
+cypress/screenshots
+cypress/videos
+
+# IDEs and editors
+.idea
+/nbproject/private/
+.buildpath
+.project
+.settings/
+.classpath
+.c9/
+*.launch
+*.sublime-workspace
+*.swp
+*.bkp
+*.bak
+*~
+.~lock.*
+
+# By default the phpunit.xml.dist is provided; you can override this using a local config file
+phpunit.xml
+
+# Contains local overrides for docker no need to put those in to version control
+docker-compose.override.yml

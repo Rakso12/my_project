@@ -134,7 +134,7 @@ class MyOAuthClientController
                 $this->myOAuthClientRepository->checkSecret($client_id, $client_secret)
             ){
                 $this->myOAuthClientRepository->deActive($client_id, $client_secret);
-                return new JsonResponse(['Status' => 'Client deactive.']);
+                return new JsonResponse(['Status' => 'Client off.']);
             }
             else {
                 return new JsonResponse(['Status' => 'Client not exist']);

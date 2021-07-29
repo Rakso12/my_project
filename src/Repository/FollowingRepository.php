@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Following;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -14,14 +15,63 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class FollowingRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $manager;
+
+    /**
+     * FollowingRepository constructor.
+     * @param ManagerRegistry $registry
+     * @param EntityManagerInterface $manager
+     */
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, Following::class);
+        $this->manager = $manager;
     }
 
-    // /**
-    //  * @return Following[] Returns an array of Following objects
-    //  */
+    /**
+     * @param Following $currentFollowing
+     * @param $following_users
+     */
+    public function addUser(Following $currentFollowing, $following_users): void
+    {
+        $currentFollowing->setUsers($following_users);
+
+        $this->manager->persist($currentFollowing);
+        $this->manager->flush();
+    }
+
+    /**
+     * @param Following $currentFollowing
+     * @param $following_hashtags
+     */
+    public function addHashtag(Following $currentFollowing, $following_hashtags)
+    {
+        $currentFollowing->setHashtags($following_hashtags);
+
+        $this->manager->persist($currentFollowing);
+        $this->manager->flush();
+    }
+
+    /**
+     * @param Following $followingUser
+     * @param $newFollowingUser
+     */
+    public function deleteUser(Following $followingUser, $newFollowingUser)
+    {
+        $followingUser->setUsers($newFollowingUser);
+
+        $this->manager->persist($followingUser);
+        $this->manager->flush();
+    }
+
+    public function deleteHashtag(Following $followingHashtag, $newFollowingHash)
+    {
+        $followingHashtag->setHashtags($newFollowingHash);
+
+        $this->manager->persist($followingHashtag);
+        $this->manager->flush();
+    }
+
     /*
     public function findByExampleField($value)
     {
