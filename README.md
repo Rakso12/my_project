@@ -18,4 +18,4 @@ Project based on Symfony 5.3 & PHP 7.4.
 - ✨Magic ✨
 
 # Documentation page:
-- not yet
+- https://rakso12.github.io/REST-API-OAuth2Server-Documentation/
