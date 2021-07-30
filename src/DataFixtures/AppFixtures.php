@@ -2,13 +2,9 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Hashtag;
-use App\Entity\HashToPost;
 use App\Entity\Post;
-use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\service_locator;
 
 class AppFixtures extends Fixture
 {
@@ -77,45 +73,6 @@ class AppFixtures extends Fixture
         Mauris porttitor fermentum ligula sed varius.',
     ];
 
-    private static $hashToHTP = [
-        5,
-        6,
-        7,
-        5,
-        6,
-        7,
-    ];
-
-    private static $postToHTP = [
-        1,
-        2,
-        3,
-        4,
-        5,
-    ];
-
-    private static $observeHash = [
-        1,
-        2,
-        3,
-        4,
-        1,
-        2,
-        4,
-        3,
-    ];
-
-    private static $observeUsers = [
-        1,
-        1,
-        1,
-        1,
-        2,
-        2,
-        3,
-        3,
-    ];
-
     public function load(ObjectManager $manager)
     {
         for ($i = 1; $i < 8; $i++)
@@ -128,21 +85,6 @@ class AppFixtures extends Fixture
                 $post->setHashtags($tmp);
                 $manager->persist($post);
             }
-        }
-        $manager->flush();
-
-        for($i = 0; $i < 3; $i++){
-            $hashtag = new Hashtag();
-            $hashtag->setName(self::$hashtags[$i]);
-            $manager->persist($hashtag);
-        }
-        $manager->flush();
-
-        for($i = 0; $i < 5; $i++){
-            $hashToPost = new HashToPost();
-            $hashToPost->setIdHash(self::$hashToHTP[$i]);
-            $hashToPost->setIdPost(self::$postToHTP[$i]);
-            $manager->persist($hashToPost);
         }
         $manager->flush();
     }

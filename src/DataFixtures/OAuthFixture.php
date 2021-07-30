@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use App\Entity\MyOAuthClient;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\service_locator;
 
 class OAuthFixture extends Fixture
 {

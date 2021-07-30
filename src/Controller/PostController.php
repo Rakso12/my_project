@@ -126,12 +126,60 @@ class PostController
 
                 $posts = $this->postRepository->getPosts($authorId);
 
-                return new JsonResponse(var_dump($posts));
+                return new JsonResponse(var_export($posts));
         }
 
         return new JsonResponse($errors);
+    }
 
-        // TODO zmienić trochę wyświetlane dane (wrzucić w tablice zamiast obiekt cały)
+    /**
+     * This is endpoint function to show all user's post. Mandatory data:
+     * - token (string)
+     * - wanted user  (email - string)
+     * - username (email - string)
+     * @Route("/post/showuserpost", name="show_all_post_by_user", methods={"POST"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function showUserPost(Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $token = $data['token'];
+        $wanted_user = $data['wanted_user'];
+        $username = $data['username'];
+
+        $scope = 'readOther';
+        $errors = [];
+
+        if (empty($token) ||
+            empty($wanted_user) ||
+            empty($username)
+        ){
+         $errors[] = "Expecting mandatory parameters!";
+        }
+
+        if(!$this->myOAuthAccessTokenRepository->checkScope($scope, $token)){
+            $errors[] = "Scope not valid";
+        }
+
+        if(!$this->myOAuthAccessTokenRepository->checkTokenTerm($token)){
+            $errors[] = "Token is out of date";
+        }
+
+        if(!$this->myOAuthAccessTokenRepository->checkTokenUser($username, $token)){
+            $errors[] = "Token is not your - Check user.";
+        }
+
+        if(!$errors){
+            $user = $this->userRepository->findOneBy(['email' => $wanted_user]);
+            $userId = $user->getId();
+
+            $posts = $this->postRepository->getPosts($userId);
+
+            return new JsonResponse(var_export($posts));
+        }
+        return new JsonResponse($errors);
     }
 
     /**
@@ -178,7 +226,7 @@ class PostController
 
             $posts = $this->postRepository->getByFollowingProperties($followingHashtags, $followingUsers);
 
-            return new JsonResponse(var_dump($posts));
+            return new JsonResponse(var_export($posts));
         }
 
         return new JsonResponse($errors);
@@ -220,7 +268,7 @@ class PostController
         ){
             $posts = $this->postRepository->getPostByHash($hashtag);
 
-            return new JsonResponse(var_dump($posts));
+            return new JsonResponse(var_export($posts));
         }
         return new JsonResponse($errors);
     }
@@ -264,6 +312,7 @@ class PostController
 
         return new JsonResponse($data, Response::HTTP_OK);
     }
+
 
     /**
      * @Route("/posts/{id}", name="update_post", methods={"PUT"})

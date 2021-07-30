@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Repository for OAuth Client Repository.
  * @method MyOAuthClient|null find($id, $lockMode = null, $lockVersion = null)
  * @method MyOAuthClient|null findOneBy(array $criteria, array $orderBy = null)
  * @method MyOAuthClient[]    findAll()
@@ -29,6 +30,7 @@ class MyOAuthClientRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function which generate new client.
      * @param $identifier
      * @param $name
      * @param $secret
@@ -45,6 +47,7 @@ class MyOAuthClientRepository extends ServiceEntityRepository
     }
 
     /**
+     * Check if the client exist.
      * @param $identifier
      * @return bool
      */
@@ -60,6 +63,7 @@ class MyOAuthClientRepository extends ServiceEntityRepository
     }
 
     /**
+     * ATTENTION: IDK WHAT IS THIS :(
      * @param $identifier
      * @param $secret
      * @return bool
@@ -76,6 +80,7 @@ class MyOAuthClientRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to update grant and scopes.
      * @param $identifier
      * @param $grant
      * @param $scope
@@ -98,6 +103,7 @@ class MyOAuthClientRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to client deactivation.
      * @param $identifier
      * @param $secret
      */
@@ -111,6 +117,7 @@ class MyOAuthClientRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to make client active.
      * @param $identifier
      * @param $secret
      */
@@ -124,6 +131,7 @@ class MyOAuthClientRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to validate client data.
      * @param $client_id
      * @param $client_secret
      * @return bool

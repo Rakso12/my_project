@@ -6,11 +6,13 @@ use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Entity to store data about the user's posts.
  * @ORM\Entity(repositoryClass=PostRepository::class)
  */
 class Post
 {
     /**
+     * Id of post.
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -18,29 +20,35 @@ class Post
     private $id;
 
     /**
+     * Content of post.
      * @ORM\Column(type="text")
-     * @var
      */
     private $content;
 
     /**
+     * Author of post.
      * @ORM\Column(type="integer")
-     * @var
      */
     private $author;
 
     /**
+     * String with hashtags.
      * @ORM\Column(type="string")
-     * @var
      */
     private $hashtags = '';
 
+
+    /**
+     * Return id of post.
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
+     * Return all content of post.
      * @return mixed
      */
     public function getContent()
@@ -49,6 +57,8 @@ class Post
     }
 
     /**
+     * Give access to change post content.
+     * ATTENTION: Post content is string with white sign like space, tab etc..
      * @param mixed $content
      */
     public function setContent($content): void
@@ -57,6 +67,8 @@ class Post
     }
 
     /**
+     * Return author of post.
+     * ATTENTION: author is integer ID not email.
      * @return mixed
      */
     public function getAuthor()
@@ -65,6 +77,7 @@ class Post
     }
 
     /**
+     * Give access to change author of post ID.
      * @param mixed $author
      */
     public function setAuthor($author): void
@@ -73,6 +86,7 @@ class Post
     }
 
     /**
+     * Return hashtags string.
      * @return string
      */
     public function getHashtags(): string
@@ -81,6 +95,8 @@ class Post
     }
 
     /**
+     * Give access to change hashtag string.
+     * ATTENTION: Remember about space between hashtags.
      * @param mixed $hashtags
      */
     public function setHashtags($hashtags): void
@@ -88,6 +104,11 @@ class Post
         $this->hashtags = $hashtags;
     }
 
+    /**
+     * Return all info about all posts.
+     * NOTICE: It is not used now.
+     * @return array
+     */
     public function toArray(): array
     {
         return

@@ -9,24 +9,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use League\Bundle\OAuth2ServerBundle\Repository;
 
+/**
+ * Class SecurityController
+ * @package App\Controller
+ */
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/api/userlogin", name="login_user_url", methods={"POST"})
-     * @param Request $request
-     * @return Response
-     */
-    public  function userLogin(Request $request): Response
-    {
-        $user = $this->getUser();
-
-        return $this->json([
-            'username' => $user->getUserIdentifier(),
-            'roles' => $user->getRoles(),
-        ]);
-    }
-
-    /**
+     * Function to login user in login form. - not used.
      * @Route("/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -44,10 +34,28 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * Endpoint to logout user.
      * @Route("/logout", name="app_logout")
      */
     public function logout()
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    /**
+     * Endpoint for log in user.
+     * @Route("/api/userlogin", name="login_user_url", methods={"POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public  function userLogin(Request $request): Response
+    {
+        $user = $this->getUser();
+
+        return $this->json([
+            'username' => $user->getUserIdentifier(),
+            'roles' => $user->getRoles(),
+        ]);
+    }
+
 }

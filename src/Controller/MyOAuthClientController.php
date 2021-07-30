@@ -10,10 +10,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class MyOAuthClientController
+ * @package App\Controller
+ */
 class MyOAuthClientController
 {
     private $myOAuthClientRepository;
 
+    /**
+     * MyOAuthClientController constructor.
+     * @param MyOAuthClientRepository $myOAuthClientRepository
+     */
     public function __construct(MyOAuthClientRepository $myOAuthClientRepository)
     {
         $this->myOAuthClientRepository = $myOAuthClientRepository;
@@ -134,7 +142,7 @@ class MyOAuthClientController
                 $this->myOAuthClientRepository->checkSecret($client_id, $client_secret)
             ){
                 $this->myOAuthClientRepository->deActive($client_id, $client_secret);
-                return new JsonResponse(['Status' => 'Client deactive.']);
+                return new JsonResponse(['Status' => 'Client off.']);
             }
             else {
                 return new JsonResponse(['Status' => 'Client not exist']);
