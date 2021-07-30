@@ -7,10 +7,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class RestController
+ * @package App\Controller
+ */
 class RestController extends AbstractController
 {
     /**
-     * This is endpoint for listing all endpoints in my API
+     * This is endpoint for listing all endpoints in my API.
      * @Route("/api", name="api", methods={"GET"})
      */
     public function getEndpoints(): Response

@@ -6,7 +6,7 @@ use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Entity to store data about the users posts.
+ * Entity to store data about the user's posts.
  * @ORM\Entity(repositoryClass=PostRepository::class)
  */
 class Post
@@ -39,6 +39,7 @@ class Post
 
 
     /**
+     * Return id of post.
      * @return int|null
      */
     public function getId(): ?int
@@ -47,6 +48,7 @@ class Post
     }
 
     /**
+     * Return all content of post.
      * @return mixed
      */
     public function getContent()
@@ -55,6 +57,8 @@ class Post
     }
 
     /**
+     * Give access to change post content.
+     * ATTENTION: Post content is string with white sign like space, tab etc..
      * @param mixed $content
      */
     public function setContent($content): void
@@ -63,6 +67,8 @@ class Post
     }
 
     /**
+     * Return author of post.
+     * ATTENTION: author is integer ID not email.
      * @return mixed
      */
     public function getAuthor()
@@ -71,6 +77,7 @@ class Post
     }
 
     /**
+     * Give access to change author of post ID.
      * @param mixed $author
      */
     public function setAuthor($author): void
@@ -79,6 +86,7 @@ class Post
     }
 
     /**
+     * Return hashtags string.
      * @return string
      */
     public function getHashtags(): string
@@ -87,6 +95,8 @@ class Post
     }
 
     /**
+     * Give access to change hashtag string.
+     * ATTENTION: Remember about space between hashtags.
      * @param mixed $hashtags
      */
     public function setHashtags($hashtags): void
@@ -95,6 +105,8 @@ class Post
     }
 
     /**
+     * Return all info about all posts.
+     * NOTICE: It is not used now.
      * @return array
      */
     public function toArray(): array

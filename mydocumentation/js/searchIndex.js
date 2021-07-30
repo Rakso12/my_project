@@ -3,7 +3,7 @@ Search.appendIndex(
                 {
             "fqsen": "\\App\\Controller\\AdminController",
             "name": "AdminController",
-            "summary": "",
+            "summary": "Class\u0020AdminController\u0020\u002D\u0020current\u0020not\u0020used.",
             "url": "classes/App-Controller-AdminController.html"
         },                {
             "fqsen": "\\App\\Controller\\AdminController\u003A\u003AdashBoard\u0028\u0029",
@@ -13,32 +13,32 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\FollowingController",
             "name": "FollowingController",
-            "summary": "",
+            "summary": "Class\u0020FollowingController",
             "url": "classes/App-Controller-FollowingController.html"
         },                {
             "fqsen": "\\App\\Controller\\FollowingController\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "FollowingController\u0020constructor.",
             "url": "classes/App-Controller-FollowingController.html#method___construct"
         },                {
             "fqsen": "\\App\\Controller\\FollowingController\u003A\u003AaddFollowingUser\u0028\u0029",
             "name": "addFollowingUser",
-            "summary": "",
+            "summary": "Endpoint\u0020to\u0020add\u0020new\u0020user\u0020to\u0020following\u0020users.",
             "url": "classes/App-Controller-FollowingController.html#method_addFollowingUser"
         },                {
             "fqsen": "\\App\\Controller\\FollowingController\u003A\u003AaddFollowingHashtag\u0028\u0029",
             "name": "addFollowingHashtag",
-            "summary": "",
+            "summary": "Endpoint\u0020to\u0020add\u0020new\u0020hashtag\u0020to\u0020following\u0020hashtags.",
             "url": "classes/App-Controller-FollowingController.html#method_addFollowingHashtag"
         },                {
             "fqsen": "\\App\\Controller\\FollowingController\u003A\u003AunFollowUser\u0028\u0029",
             "name": "unFollowUser",
-            "summary": "",
+            "summary": "Delete\u0020user\u0020from\u0020following\u0020users.",
             "url": "classes/App-Controller-FollowingController.html#method_unFollowUser"
         },                {
             "fqsen": "\\App\\Controller\\FollowingController\u003A\u003AunFollowHashtag\u0028\u0029",
             "name": "unFollowHashtag",
-            "summary": "",
+            "summary": "Delete\u0020hashtag\u0020from\u0020following\u0020hashtags.",
             "url": "classes/App-Controller-FollowingController.html#method_unFollowHashtag"
         },                {
             "fqsen": "\\App\\Controller\\FollowingController\u003A\u003A\u0024followingRepository",
@@ -53,17 +53,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\MainRouteController",
             "name": "MainRouteController",
-            "summary": "",
+            "summary": "Class\u0020MainRouteController",
             "url": "classes/App-Controller-MainRouteController.html"
         },                {
             "fqsen": "\\App\\Controller\\MainRouteController\u003A\u003Aindex\u0028\u0029",
             "name": "index",
-            "summary": "",
+            "summary": "It\u0027s\u0020only\u0020for\u0020logout\u0020endpoint\u0020route.",
             "url": "classes/App-Controller-MainRouteController.html#method_index"
         },                {
             "fqsen": "\\App\\Controller\\MyOAuthAccessTokenController",
             "name": "MyOAuthAccessTokenController",
-            "summary": "",
+            "summary": "Class\u0020MyOAuthAccessTokenController",
             "url": "classes/App-Controller-MyOAuthAccessTokenController.html"
         },                {
             "fqsen": "\\App\\Controller\\MyOAuthAccessTokenController\u003A\u003A__construct\u0028\u0029",
@@ -103,12 +103,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\MyOAuthClientController",
             "name": "MyOAuthClientController",
-            "summary": "",
+            "summary": "Class\u0020MyOAuthClientController",
             "url": "classes/App-Controller-MyOAuthClientController.html"
         },                {
             "fqsen": "\\App\\Controller\\MyOAuthClientController\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "MyOAuthClientController\u0020constructor.",
             "url": "classes/App-Controller-MyOAuthClientController.html#method___construct"
         },                {
             "fqsen": "\\App\\Controller\\MyOAuthClientController\u003A\u003AmakeClient\u0028\u0029",
@@ -213,28 +213,28 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\RegistrationController",
             "name": "RegistrationController",
-            "summary": "",
+            "summary": "Class\u0020RegistrationController",
             "url": "classes/App-Controller-RegistrationController.html"
-        },                {
-            "fqsen": "\\App\\Controller\\RegistrationController\u003A\u003AregisterUser\u0028\u0029",
-            "name": "registerUser",
-            "summary": "",
-            "url": "classes/App-Controller-RegistrationController.html#method_registerUser"
         },                {
             "fqsen": "\\App\\Controller\\RegistrationController\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "RegistrationController\u0020constructor.",
             "url": "classes/App-Controller-RegistrationController.html#method___construct"
         },                {
             "fqsen": "\\App\\Controller\\RegistrationController\u003A\u003Aregister\u0028\u0029",
             "name": "register",
-            "summary": "",
+            "summary": "Function\u0020to\u0020register\u0020user\u0020by\u0020registe\u0020form\u0020\u002D\u0020not\u0020used.",
             "url": "classes/App-Controller-RegistrationController.html#method_register"
         },                {
             "fqsen": "\\App\\Controller\\RegistrationController\u003A\u003AverifyUserEmail\u0028\u0029",
             "name": "verifyUserEmail",
-            "summary": "",
+            "summary": "Function\u0020for\u0020send\u0020verify\u0020email.",
             "url": "classes/App-Controller-RegistrationController.html#method_verifyUserEmail"
+        },                {
+            "fqsen": "\\App\\Controller\\RegistrationController\u003A\u003AregisterUser\u0028\u0029",
+            "name": "registerUser",
+            "summary": "Endpoint\u0020for\u0020register\u0020new\u0020user.",
+            "url": "classes/App-Controller-RegistrationController.html#method_registerUser"
         },                {
             "fqsen": "\\App\\Controller\\RegistrationController\u003A\u003A\u0024emailVerifier",
             "name": "emailVerifier",
@@ -243,33 +243,33 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\RestController",
             "name": "RestController",
-            "summary": "",
+            "summary": "Class\u0020RestController",
             "url": "classes/App-Controller-RestController.html"
         },                {
             "fqsen": "\\App\\Controller\\RestController\u003A\u003AgetEndpoints\u0028\u0029",
             "name": "getEndpoints",
-            "summary": "This\u0020is\u0020endpoint\u0020for\u0020listing\u0020all\u0020endpoints\u0020in\u0020my\u0020API",
+            "summary": "This\u0020is\u0020endpoint\u0020for\u0020listing\u0020all\u0020endpoints\u0020in\u0020my\u0020API.",
             "url": "classes/App-Controller-RestController.html#method_getEndpoints"
         },                {
             "fqsen": "\\App\\Controller\\SecurityController",
             "name": "SecurityController",
-            "summary": "",
+            "summary": "Class\u0020SecurityController",
             "url": "classes/App-Controller-SecurityController.html"
-        },                {
-            "fqsen": "\\App\\Controller\\SecurityController\u003A\u003AuserLogin\u0028\u0029",
-            "name": "userLogin",
-            "summary": "",
-            "url": "classes/App-Controller-SecurityController.html#method_userLogin"
         },                {
             "fqsen": "\\App\\Controller\\SecurityController\u003A\u003Alogin\u0028\u0029",
             "name": "login",
-            "summary": "",
+            "summary": "Function\u0020to\u0020login\u0020user\u0020in\u0020login\u0020form.\u0020\u002D\u0020not\u0020used.",
             "url": "classes/App-Controller-SecurityController.html#method_login"
         },                {
             "fqsen": "\\App\\Controller\\SecurityController\u003A\u003Alogout\u0028\u0029",
             "name": "logout",
-            "summary": "",
+            "summary": "Endpoint\u0020to\u0020logout\u0020user.",
             "url": "classes/App-Controller-SecurityController.html#method_logout"
+        },                {
+            "fqsen": "\\App\\Controller\\SecurityController\u003A\u003AuserLogin\u0028\u0029",
+            "name": "userLogin",
+            "summary": "Endpoint\u0020for\u0020log\u0020in\u0020user.",
+            "url": "classes/App-Controller-SecurityController.html#method_userLogin"
         },                {
             "fqsen": "\\App\\DataFixtures\\AppFixtures",
             "name": "AppFixtures",
@@ -393,12 +393,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Entity\\Following\u003A\u003AgetUsers\u0028\u0029",
             "name": "getUsers",
-            "summary": "",
+            "summary": "Return\u0020the\u0020string\u0020of\u0020users\u0020following\u0020by\u0020user.\u0020Users\u0020are\u0020separated\u0020by\u0020space.",
             "url": "classes/App-Entity-Following.html#method_getUsers"
         },                {
             "fqsen": "\\App\\Entity\\Following\u003A\u003AsetUsers\u0028\u0029",
             "name": "setUsers",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020the\u0020users\u0020string.",
             "url": "classes/App-Entity-Following.html#method_setUsers"
         },                {
             "fqsen": "\\App\\Entity\\Following\u003A\u003A\u0024id",
@@ -423,107 +423,107 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken",
             "name": "MyOAuthAccessToken",
-            "summary": "",
+            "summary": "Entity\u0020to\u0020store\u0020data\u0020about\u0020the\u0020access\u0020tokens\u0020that\u0020are\u0020generated\u0020by\u0020my\u0020OAuth\u0020Server\u0020implementation.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AgetId\u0028\u0029",
             "name": "getId",
-            "summary": "",
+            "summary": "Return\u0020token\u0020ID.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_getId"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AgetIdentifier\u0028\u0029",
             "name": "getIdentifier",
-            "summary": "",
+            "summary": "Return\u0020token\u0020string\u0020\u002820\u0020char\u0020string\u0029",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_getIdentifier"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AsetIdentifier\u0028\u0029",
             "name": "setIdentifier",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020token.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_setIdentifier"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AgetClientId\u0028\u0029",
             "name": "getClientId",
-            "summary": "",
+            "summary": "Return\u0020id\u0020of\u0020the\u0020client\u0020whose\u0020token\u0020it\u0020is.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_getClientId"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AsetClientId\u0028\u0029",
             "name": "setClientId",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020client\u0020id.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_setClientId"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AgetMakeDate\u0028\u0029",
             "name": "getMakeDate",
-            "summary": "",
+            "summary": "Return\u0020the\u0020date\u0020when\u0020the\u0020token\u0020was\u0020generated.\u0020\u0028\u0027Y\u002DM\u002DD\u0020H\u002DM\u002DS\u0027\u0029",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_getMakeDate"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AsetMakeDate\u0028\u0029",
             "name": "setMakeDate",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020date\u0020of\u0020generate\u0020the\u0020token.\u0020\u0028\u0027Y\u002DM\u002DD\u0020H\u002DM\u002DS\u0027\u0029",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_setMakeDate"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AgetUserId\u0028\u0029",
             "name": "getUserId",
-            "summary": "",
+            "summary": "Return\u0020id\u0020of\u0020the\u0020user\u0020whose\u0020token\u0020it\u0020is.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_getUserId"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AsetUserId\u0028\u0029",
             "name": "setUserId",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020user\u0020email.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_setUserId"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AgetScopes\u0028\u0029",
             "name": "getScopes",
-            "summary": "",
+            "summary": "Return\u0020string\u0020of\u0020scopes.\u0020All\u0020scopes\u0020are\u0020separated\u0020by\u0020space.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_getScopes"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AsetScopes\u0028\u0029",
             "name": "setScopes",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020scopes.\u0020Scopes\u0020are\u0020separated\u0020by\u0020space.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_setScopes"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AgetIsActive\u0028\u0029",
             "name": "getIsActive",
-            "summary": "",
+            "summary": "Return\u0020token\u0020active\u0020status.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_getIsActive"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003AsetIsActive\u0028\u0029",
             "name": "setIsActive",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020token\u0020status.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#method_setIsActive"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003A\u0024id",
             "name": "id",
-            "summary": "",
+            "summary": "ID\u0020of\u0020given\u0020token.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#property_id"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003A\u0024identifier",
             "name": "identifier",
-            "summary": "",
+            "summary": "Token\u0020that\u0020is\u0020given\u0020by\u0020generateToken\u0020function.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#property_identifier"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003A\u0024client_id",
             "name": "client_id",
-            "summary": "",
+            "summary": "Client\u0020identifier\u0020\u0028usually\u0020client\u0020public\u0020key\u0029.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#property_client_id"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003A\u0024make_date",
             "name": "make_date",
-            "summary": "",
+            "summary": "Date\u0020when\u0020token\u0020was\u0020created.\u0020\u0028\u0027Y\u002DM\u002DD\u0020H\u002DM\u002DS\u0027\u0029",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#property_make_date"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003A\u0024user_id",
             "name": "user_id",
-            "summary": "",
+            "summary": "User\u0020email\u0020for\u0020whom\u0020the\u0020token\u0020was\u0020created",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#property_user_id"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003A\u0024scopes",
             "name": "scopes",
-            "summary": "",
+            "summary": "The\u0020scope\u0020of\u0020access\u0020to\u0020the\u0020specifying\u0020what\u0020actions\u0020the\u0020user\u0020can\u0020perform\u0020with\u0020this\u0020token.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#property_scopes"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthAccessToken\u003A\u003A\u0024is_active",
             "name": "is_active",
-            "summary": "",
+            "summary": "Variable\u0020which\u0020shows\u0020if\u0020token\u0020is\u0020up\u002Dto\u002Ddate.",
             "url": "classes/App-Entity-MyOAuthAccessToken.html#property_is_active"
         },                {
             "fqsen": "\\App\\Entity\\MyOAuthClient",
@@ -633,107 +633,107 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Entity\\Post",
             "name": "Post",
-            "summary": "",
+            "summary": "Entity\u0020to\u0020store\u0020data\u0020about\u0020the\u0020user\u0027s\u0020posts.",
             "url": "classes/App-Entity-Post.html"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003AgetId\u0028\u0029",
             "name": "getId",
-            "summary": "",
+            "summary": "Return\u0020id\u0020of\u0020post.",
             "url": "classes/App-Entity-Post.html#method_getId"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003AgetContent\u0028\u0029",
             "name": "getContent",
-            "summary": "",
+            "summary": "Return\u0020all\u0020content\u0020of\u0020post.",
             "url": "classes/App-Entity-Post.html#method_getContent"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003AsetContent\u0028\u0029",
             "name": "setContent",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020post\u0020content.",
             "url": "classes/App-Entity-Post.html#method_setContent"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003AgetAuthor\u0028\u0029",
             "name": "getAuthor",
-            "summary": "",
+            "summary": "Return\u0020author\u0020of\u0020post.",
             "url": "classes/App-Entity-Post.html#method_getAuthor"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003AsetAuthor\u0028\u0029",
             "name": "setAuthor",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020author\u0020of\u0020post\u0020ID.",
             "url": "classes/App-Entity-Post.html#method_setAuthor"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003AgetHashtags\u0028\u0029",
             "name": "getHashtags",
-            "summary": "",
+            "summary": "Return\u0020hashtags\u0020string.",
             "url": "classes/App-Entity-Post.html#method_getHashtags"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003AsetHashtags\u0028\u0029",
             "name": "setHashtags",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020hashtag\u0020string.",
             "url": "classes/App-Entity-Post.html#method_setHashtags"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "",
+            "summary": "Return\u0020all\u0020info\u0020about\u0020all\u0020posts.",
             "url": "classes/App-Entity-Post.html#method_toArray"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003A\u0024id",
             "name": "id",
-            "summary": "",
+            "summary": "Id\u0020of\u0020post.",
             "url": "classes/App-Entity-Post.html#property_id"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003A\u0024content",
             "name": "content",
-            "summary": "",
+            "summary": "Content\u0020of\u0020post.",
             "url": "classes/App-Entity-Post.html#property_content"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003A\u0024author",
             "name": "author",
-            "summary": "",
+            "summary": "Author\u0020of\u0020post.",
             "url": "classes/App-Entity-Post.html#property_author"
         },                {
             "fqsen": "\\App\\Entity\\Post\u003A\u003A\u0024hashtags",
             "name": "hashtags",
-            "summary": "",
+            "summary": "String\u0020with\u0020hashtags.",
             "url": "classes/App-Entity-Post.html#property_hashtags"
         },                {
             "fqsen": "\\App\\Entity\\User",
             "name": "User",
-            "summary": "",
+            "summary": "Entity\u0020to\u0020store\u0020data\u0020about\u0020the\u0020users.",
             "url": "classes/App-Entity-User.html"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003AgetId\u0028\u0029",
             "name": "getId",
-            "summary": "",
+            "summary": "Return\u0020id\u0020of\u0020user.",
             "url": "classes/App-Entity-User.html#method_getId"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003AgetEmail\u0028\u0029",
             "name": "getEmail",
-            "summary": "",
+            "summary": "Return\u0020email\u0020of\u0020user.",
             "url": "classes/App-Entity-User.html#method_getEmail"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003AsetEmail\u0028\u0029",
             "name": "setEmail",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020set\u0020user\u0020email.",
             "url": "classes/App-Entity-User.html#method_setEmail"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003AgetFirstName\u0028\u0029",
             "name": "getFirstName",
-            "summary": "",
+            "summary": "Return\u0020user\u0020first\u0020name.",
             "url": "classes/App-Entity-User.html#method_getFirstName"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003AsetFirstName\u0028\u0029",
             "name": "setFirstName",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020user\u0020first\u0020name.",
             "url": "classes/App-Entity-User.html#method_setFirstName"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003AgetLastName\u0028\u0029",
             "name": "getLastName",
-            "summary": "",
+            "summary": "Return\u0020user\u0020last\u0020name.",
             "url": "classes/App-Entity-User.html#method_getLastName"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003AsetLastName\u0028\u0029",
             "name": "setLastName",
-            "summary": "",
+            "summary": "Give\u0020access\u0020to\u0020change\u0020user\u0020last\u0020name.",
             "url": "classes/App-Entity-User.html#method_setLastName"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003AgetUserIdentifier\u0028\u0029",
@@ -778,7 +778,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003A\u0024isVerified",
             "name": "isVerified",
-            "summary": "",
+            "summary": "Variable\u0020for\u0020checking\u0020that\u0020user\u0020is\u0020Verified\u0020\u0028email\u0020link\u0029.",
             "url": "classes/App-Entity-User.html#property_isVerified"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003AsetIsVerified\u0028\u0029",
@@ -798,32 +798,32 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003A\u0024id",
             "name": "id",
-            "summary": "",
+            "summary": "ID\u0020of\u0020user.",
             "url": "classes/App-Entity-User.html#property_id"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003A\u0024email",
             "name": "email",
-            "summary": "",
+            "summary": "User\u0020email",
             "url": "classes/App-Entity-User.html#property_email"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003A\u0024roles",
             "name": "roles",
-            "summary": "",
+            "summary": "Roles\u0020like\u0020ROLE_ADMIN\u0020or\u0020sth\u0020else.",
             "url": "classes/App-Entity-User.html#property_roles"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003A\u0024firstName",
             "name": "firstName",
-            "summary": "",
+            "summary": "User\u0020first\u0020name.",
             "url": "classes/App-Entity-User.html#property_firstName"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003A\u0024lastName",
             "name": "lastName",
-            "summary": "",
+            "summary": "User\u0020last\u0020name.",
             "url": "classes/App-Entity-User.html#property_lastName"
         },                {
             "fqsen": "\\App\\Entity\\User\u003A\u003A\u0024password",
             "name": "password",
-            "summary": "",
+            "summary": "User\u0020hashed\u0020password.",
             "url": "classes/App-Entity-User.html#property_password"
         },                {
             "fqsen": "\\App\\Form\\RegistrationFormType",
@@ -858,7 +858,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\FollowingRepository",
             "name": "FollowingRepository",
-            "summary": "",
+            "summary": "Repository\u0020for\u0020Following\u0020entity.",
             "url": "classes/App-Repository-FollowingRepository.html"
         },                {
             "fqsen": "\\App\\Repository\\FollowingRepository\u003A\u003A__construct\u0028\u0029",
@@ -868,22 +868,22 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\FollowingRepository\u003A\u003AaddUser\u0028\u0029",
             "name": "addUser",
-            "summary": "",
+            "summary": "Function\u0020to\u0020put\u0020new\u0020Following\u0020Users\u0020to\u0020the\u0020record.",
             "url": "classes/App-Repository-FollowingRepository.html#method_addUser"
         },                {
             "fqsen": "\\App\\Repository\\FollowingRepository\u003A\u003AaddHashtag\u0028\u0029",
             "name": "addHashtag",
-            "summary": "",
+            "summary": "Function\u0020to\u0020put\u0020new\u0020Following\u0020Hashtags\u0020to\u0020the\u0020record.",
             "url": "classes/App-Repository-FollowingRepository.html#method_addHashtag"
         },                {
             "fqsen": "\\App\\Repository\\FollowingRepository\u003A\u003AdeleteUser\u0028\u0029",
             "name": "deleteUser",
-            "summary": "",
+            "summary": "Function\u0020to\u0020delete\u0020user\u0020from\u0020following\u0020user.",
             "url": "classes/App-Repository-FollowingRepository.html#method_deleteUser"
         },                {
             "fqsen": "\\App\\Repository\\FollowingRepository\u003A\u003AdeleteHashtag\u0028\u0029",
             "name": "deleteHashtag",
-            "summary": "",
+            "summary": "Function\u0020to\u0020delete\u0020hashtag\u0020from\u0020following\u0020hashtags.",
             "url": "classes/App-Repository-FollowingRepository.html#method_deleteHashtag"
         },                {
             "fqsen": "\\App\\Repository\\FollowingRepository\u003A\u003A\u0024manager",
@@ -893,7 +893,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthAccessTokenRepository",
             "name": "MyOAuthAccessTokenRepository",
-            "summary": "",
+            "summary": "Repository\u0020for\u0020OAuth\u0020Access\u0020Token\u0020Repository.",
             "url": "classes/App-Repository-MyOAuthAccessTokenRepository.html"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthAccessTokenRepository\u003A\u003A__construct\u0028\u0029",
@@ -903,37 +903,37 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthAccessTokenRepository\u003A\u003AgenerateToken\u0028\u0029",
             "name": "generateToken",
-            "summary": "",
+            "summary": "Function\u0020to\u0020generate\u0020token\u0020string.",
             "url": "classes/App-Repository-MyOAuthAccessTokenRepository.html#method_generateToken"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthAccessTokenRepository\u003A\u003AsetAccess\u0028\u0029",
             "name": "setAccess",
-            "summary": "",
+            "summary": "Function\u0020which\u0020generate\u0020new\u0020token\u0020record.",
             "url": "classes/App-Repository-MyOAuthAccessTokenRepository.html#method_setAccess"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthAccessTokenRepository\u003A\u003AgetTokenScope\u0028\u0029",
             "name": "getTokenScope",
-            "summary": "",
+            "summary": "Return\u0020the\u0020token\u0020access\u0020scopes\u0020string.",
             "url": "classes/App-Repository-MyOAuthAccessTokenRepository.html#method_getTokenScope"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthAccessTokenRepository\u003A\u003AisExistToken\u0028\u0029",
             "name": "isExistToken",
-            "summary": "",
+            "summary": "Checks\u0020if\u0020the\u0020token\u0020exist.",
             "url": "classes/App-Repository-MyOAuthAccessTokenRepository.html#method_isExistToken"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthAccessTokenRepository\u003A\u003AcheckTokenTerm\u0028\u0029",
             "name": "checkTokenTerm",
-            "summary": "",
+            "summary": "Checks\u0020if\u0020the\u0020token\u0020term\u0020is\u0020up\u002Dto\u002Ddate.",
             "url": "classes/App-Repository-MyOAuthAccessTokenRepository.html#method_checkTokenTerm"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthAccessTokenRepository\u003A\u003AcheckTokenUser\u0028\u0029",
             "name": "checkTokenUser",
-            "summary": "",
+            "summary": "Checks\u0020if\u0020user\u0020is\u0020owner\u0020of\u0020token.",
             "url": "classes/App-Repository-MyOAuthAccessTokenRepository.html#method_checkTokenUser"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthAccessTokenRepository\u003A\u003AcheckScope\u0028\u0029",
             "name": "checkScope",
-            "summary": "",
+            "summary": "Checks\u0020if\u0020the\u0020given\u0020scope\u0020is\u0020in\u0020the\u0020scopes.",
             "url": "classes/App-Repository-MyOAuthAccessTokenRepository.html#method_checkScope"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthAccessTokenRepository\u003A\u003A\u0024manager",
@@ -943,7 +943,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthClientRepository",
             "name": "MyOAuthClientRepository",
-            "summary": "",
+            "summary": "Repository\u0020for\u0020OAuth\u0020Client\u0020Repository.",
             "url": "classes/App-Repository-MyOAuthClientRepository.html"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthClientRepository\u003A\u003A__construct\u0028\u0029",
@@ -953,37 +953,37 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthClientRepository\u003A\u003AsaveClient\u0028\u0029",
             "name": "saveClient",
-            "summary": "",
+            "summary": "Function\u0020which\u0020generate\u0020new\u0020client.",
             "url": "classes/App-Repository-MyOAuthClientRepository.html#method_saveClient"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthClientRepository\u003A\u003AclientExist\u0028\u0029",
             "name": "clientExist",
-            "summary": "",
+            "summary": "Check\u0020if\u0020the\u0020client\u0020exist.",
             "url": "classes/App-Repository-MyOAuthClientRepository.html#method_clientExist"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthClientRepository\u003A\u003AcheckSecret\u0028\u0029",
             "name": "checkSecret",
-            "summary": "",
+            "summary": "ATTENTION\u003A\u0020IDK\u0020WHAT\u0020IS\u0020THIS\u0020\u003A\u0028",
             "url": "classes/App-Repository-MyOAuthClientRepository.html#method_checkSecret"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthClientRepository\u003A\u003AupdateParameters\u0028\u0029",
             "name": "updateParameters",
-            "summary": "",
+            "summary": "Function\u0020to\u0020update\u0020grant\u0020and\u0020scopes.",
             "url": "classes/App-Repository-MyOAuthClientRepository.html#method_updateParameters"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthClientRepository\u003A\u003AdeActive\u0028\u0029",
             "name": "deActive",
-            "summary": "",
+            "summary": "Function\u0020to\u0020client\u0020deactivation.",
             "url": "classes/App-Repository-MyOAuthClientRepository.html#method_deActive"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthClientRepository\u003A\u003AupActive\u0028\u0029",
             "name": "upActive",
-            "summary": "",
+            "summary": "Function\u0020to\u0020make\u0020client\u0020active.",
             "url": "classes/App-Repository-MyOAuthClientRepository.html#method_upActive"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthClientRepository\u003A\u003AcheckClient\u0028\u0029",
             "name": "checkClient",
-            "summary": "",
+            "summary": "Function\u0020to\u0020validate\u0020client\u0020data.",
             "url": "classes/App-Repository-MyOAuthClientRepository.html#method_checkClient"
         },                {
             "fqsen": "\\App\\Repository\\MyOAuthClientRepository\u003A\u003A\u0024manager",
@@ -993,7 +993,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\PostRepository",
             "name": "PostRepository",
-            "summary": "",
+            "summary": "Repository\u0020for\u0020Post\u0020Repository",
             "url": "classes/App-Repository-PostRepository.html"
         },                {
             "fqsen": "\\App\\Repository\\PostRepository\u003A\u003A__construct\u0028\u0029",
@@ -1003,32 +1003,32 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\PostRepository\u003A\u003AsavePost\u0028\u0029",
             "name": "savePost",
-            "summary": "",
+            "summary": "Function\u0020which\u0020generate\u0020new\u0020post.",
             "url": "classes/App-Repository-PostRepository.html#method_savePost"
         },                {
             "fqsen": "\\App\\Repository\\PostRepository\u003A\u003AupdatePost\u0028\u0029",
             "name": "updatePost",
-            "summary": "",
+            "summary": "Function\u0020to\u0020update\u0020post.",
             "url": "classes/App-Repository-PostRepository.html#method_updatePost"
         },                {
             "fqsen": "\\App\\Repository\\PostRepository\u003A\u003AremovePost\u0028\u0029",
             "name": "removePost",
-            "summary": "",
+            "summary": "Function\u0020to\u0020delete\u0020post.",
             "url": "classes/App-Repository-PostRepository.html#method_removePost"
         },                {
             "fqsen": "\\App\\Repository\\PostRepository\u003A\u003AgetPosts\u0028\u0029",
             "name": "getPosts",
-            "summary": "",
+            "summary": "Function\u0020to\u0020get\u0020posts\u0020by\u0020author.",
             "url": "classes/App-Repository-PostRepository.html#method_getPosts"
         },                {
             "fqsen": "\\App\\Repository\\PostRepository\u003A\u003AgetPostByHash\u0028\u0029",
             "name": "getPostByHash",
-            "summary": "",
+            "summary": "Function\u0020to\u0020get\u0020posts\u0020by\u0020hashtag.",
             "url": "classes/App-Repository-PostRepository.html#method_getPostByHash"
         },                {
             "fqsen": "\\App\\Repository\\PostRepository\u003A\u003AgetByFollowingProperties\u0028\u0029",
             "name": "getByFollowingProperties",
-            "summary": "",
+            "summary": "Function\u0020to\u0020get\u0020all\u0020post\u0020by\u0020following\u0020users\u0020and\u0020hashtags.",
             "url": "classes/App-Repository-PostRepository.html#method_getByFollowingProperties"
         },                {
             "fqsen": "\\App\\Repository\\PostRepository\u003A\u003A\u0024manager",
@@ -1043,7 +1043,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\UserRepository",
             "name": "UserRepository",
-            "summary": "",
+            "summary": "Repository\u0020for\u0020User\u0020Repository.",
             "url": "classes/App-Repository-UserRepository.html"
         },                {
             "fqsen": "\\App\\Repository\\UserRepository\u003A\u003A__construct\u0028\u0029",

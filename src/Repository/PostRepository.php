@@ -10,6 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
+ * Repository for Post Repository
  * @method Post|null find($id, $lockMode = null, $lockVersion = null)
  * @method Post|null findOneBy(array $criteria, array $orderBy = null)
  * @method Post[]    findAll()
@@ -34,6 +35,7 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function which generate new post.
      * @param $content
      * @param $author
      * @param $hashtags
@@ -50,6 +52,7 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to update post.
      * @param Post $post
      * @return Post
      */
@@ -62,6 +65,7 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to delete post.
      * @param Post $post
      */
     public function removePost(Post $post)
@@ -71,6 +75,7 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to get posts by author.
      * @param $authorId
      * @return Post[]
      */
@@ -81,6 +86,7 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to get posts by hashtag.
      * @param $hashtag
      * @return array
      */
@@ -108,6 +114,7 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to get all post by following users and hashtags.
      * @param $hashtags
      * @param $users
      * @return array

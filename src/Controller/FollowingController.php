@@ -10,11 +10,20 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class FollowingController
+ * @package App\Controller
+ */
 class FollowingController
 {
     private $followingRepository;
     private $userRepository;
 
+    /**
+     * FollowingController constructor.
+     * @param FollowingRepository $followingRepository
+     * @param UserRepository $userRepository
+     */
     public function __construct(FollowingRepository $followingRepository, UserRepository $userRepository)
     {
         $this->followingRepository = $followingRepository;
@@ -22,6 +31,7 @@ class FollowingController
     }
 
     /**
+     * Endpoint to add new user to following users.
      * @Route("/following/adduser", name="add_new_following_user", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -75,6 +85,7 @@ class FollowingController
     }
 
     /**
+     * Endpoint to add new hashtag to following hashtags.
      * @Route("/following/addhashtag", name="add_new_following_hashtag", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -120,6 +131,7 @@ class FollowingController
     }
 
     /**
+     * Delete user from following users.
      * @Route("/following/unfollowuser", name="unfollow_user", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -163,6 +175,7 @@ class FollowingController
     }
 
     /**
+     * Delete hashtag from following hashtags.
      * @Route("/following/unfollowhashtag", name="unfollow_hash", methods={"POST"})
      * @param Request $request
      * @return JsonResponse

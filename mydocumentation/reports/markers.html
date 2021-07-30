@@ -178,57 +178,57 @@
                 <tbody>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">112</td>
+                        <td class="phpdocumentor-cell">46</td>
                         <td class="phpdocumentor-cell">encode the plain password</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">124</td>
+                        <td class="phpdocumentor-cell">58</td>
                         <td class="phpdocumentor-cell">generate a signed url and email it to the user</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">125</td>
+                        <td class="phpdocumentor-cell">59</td>
                         <td class="phpdocumentor-cell">$this-&gt;emailVerifier-&gt;sendEmailConfirmation(&#039;app_verify_email&#039;, $user,</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">126</td>
+                        <td class="phpdocumentor-cell">60</td>
                         <td class="phpdocumentor-cell">(new TemplatedEmail())</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">127</td>
+                        <td class="phpdocumentor-cell">61</td>
                         <td class="phpdocumentor-cell">-&gt;from(new Address(&#039;admin@security-demo.com&#039;, &#039;Security Mailer Bot&#039;))</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">128</td>
+                        <td class="phpdocumentor-cell">62</td>
                         <td class="phpdocumentor-cell">-&gt;to($user-&gt;getEmail())</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">129</td>
+                        <td class="phpdocumentor-cell">63</td>
                         <td class="phpdocumentor-cell">-&gt;subject(&#039;Please Confirm your Email&#039;)</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">130</td>
+                        <td class="phpdocumentor-cell">64</td>
                         <td class="phpdocumentor-cell">-&gt;htmlTemplate(&#039;registration/confirmation_email.html.twig&#039;)</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">131</td>
+                        <td class="phpdocumentor-cell">65</td>
                         <td class="phpdocumentor-cell">);</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">148</td>
+                        <td class="phpdocumentor-cell">84</td>
                         <td class="phpdocumentor-cell">validate email confirmation link, sets User::isVerified=true and persists</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">157</td>
+                        <td class="phpdocumentor-cell">93</td>
                         <td class="phpdocumentor-cell">@TODO Change the redirect on success and handle or remove the flash message in your templates</td>
                     </tr>
                                 </tbody>
@@ -246,27 +246,27 @@
                 <tbody>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">34</td>
+                        <td class="phpdocumentor-cell">24</td>
                         <td class="phpdocumentor-cell">if ($this-&gt;getUser()) {</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">35</td>
+                        <td class="phpdocumentor-cell">25</td>
                         <td class="phpdocumentor-cell">return $this-&gt;redirectToRoute(&#039;target_path&#039;);</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">36</td>
+                        <td class="phpdocumentor-cell">26</td>
                         <td class="phpdocumentor-cell">}</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">38</td>
+                        <td class="phpdocumentor-cell">28</td>
                         <td class="phpdocumentor-cell">get the login error if there is one</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">40</td>
+                        <td class="phpdocumentor-cell">30</td>
                         <td class="phpdocumentor-cell">last username entered by the user</td>
                     </tr>
                                 </tbody>
@@ -320,32 +320,32 @@
                 <tbody>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">56</td>
+                        <td class="phpdocumentor-cell">66</td>
                         <td class="phpdocumentor-cell">Setters &amp; Getters for common data</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">120</td>
+                        <td class="phpdocumentor-cell">138</td>
                         <td class="phpdocumentor-cell">Setters &amp; Getters for authentication</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">146</td>
+                        <td class="phpdocumentor-cell">163</td>
                         <td class="phpdocumentor-cell">guarantee every user at least has ROLE_USER</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">184</td>
+                        <td class="phpdocumentor-cell">201</td>
                         <td class="phpdocumentor-cell">I don&#039;t use Salt yet.</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">200</td>
+                        <td class="phpdocumentor-cell">217</td>
                         <td class="phpdocumentor-cell">If you store any temporary, sensitive data on the user, clear it here</td>
                     </tr>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">201</td>
+                        <td class="phpdocumentor-cell">218</td>
                         <td class="phpdocumentor-cell">$this-&gt;plainPassword = null;</td>
                     </tr>
                                 </tbody>
@@ -391,7 +391,7 @@
                 <tbody>
                                     <tr>
                         <td class="phpdocumentor-cell"></td>
-                        <td class="phpdocumentor-cell">152</td>
+                        <td class="phpdocumentor-cell">159</td>
                         <td class="phpdocumentor-cell">dodać zczytywanie hashtagów + separacje oraz wysyłanie listy postów spowrotem wykluczając powtórzenia</td>
                     </tr>
                                 </tbody>

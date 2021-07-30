@@ -10,10 +10,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class MyOAuthClientController
+ * @package App\Controller
+ */
 class MyOAuthClientController
 {
     private $myOAuthClientRepository;
 
+    /**
+     * MyOAuthClientController constructor.
+     * @param MyOAuthClientRepository $myOAuthClientRepository
+     */
     public function __construct(MyOAuthClientRepository $myOAuthClientRepository)
     {
         $this->myOAuthClientRepository = $myOAuthClientRepository;

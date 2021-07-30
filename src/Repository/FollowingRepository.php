@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Repository for Following entity.
  * @method Following|null find($id, $lockMode = null, $lockVersion = null)
  * @method Following|null findOneBy(array $criteria, array $orderBy = null)
  * @method Following[]    findAll()
@@ -29,6 +30,8 @@ class FollowingRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to put new Following Users to the record.
+     * ATTENTION: Remember, users are separated by space.
      * @param Following $currentFollowing
      * @param $following_users
      */
@@ -41,6 +44,8 @@ class FollowingRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to put new Following Hashtags to the record.
+     * ATTENTION: Remember, hashtags are separated by space.
      * @param Following $currentFollowing
      * @param $following_hashtags
      */
@@ -53,6 +58,9 @@ class FollowingRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to delete user from following user.
+     * NOTICE: Something goes wrong because it is the same like addUsers.
+     * Function to delete user record
      * @param Following $followingUser
      * @param $newFollowingUser
      */
@@ -64,6 +72,12 @@ class FollowingRepository extends ServiceEntityRepository
         $this->manager->flush();
     }
 
+    /**
+     * Function to delete hashtag from following hashtags.
+     * NOTICE: Something goes wrong because it is the same like addHashtags.
+     * @param Following $followingHashtag
+     * @param $newFollowingHash
+     */
     public function deleteHashtag(Following $followingHashtag, $newFollowingHash)
     {
         $followingHashtag->setHashtags($newFollowingHash);

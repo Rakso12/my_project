@@ -9,6 +9,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ *
+ * Entity to store data about the users.
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
@@ -17,6 +19,7 @@ class User implements UserInterface
     const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**
+     * ID of user.
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -24,31 +27,38 @@ class User implements UserInterface
     private $id;
 
     /**
+     * User email
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
+     * Roles like ROLE_ADMIN or sth else.
      * @ORM\Column(type="json")
      */
     private $roles = [];
 
     /**
+     * User first name.
      * @ORM\Column(type="string", length=255)
      */
     private $firstName;
 
     /**
+     * User last name.
      * @ORM\Column(type="string", length=255)
      */
     private $lastName;
 
     /**
+     * User hashed password.
      * @ORM\Column(type="string", length=255)
      */
     private $password;
 
     /**
+     * Variable for checking that user is Verified (email link).
+     * ATTENTION: Do not used now.
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
@@ -56,6 +66,7 @@ class User implements UserInterface
     // Setters & Getters for common data
 
     /**
+     * Return id of user.
      * @return int|null
      */
     public function getId(): ?int
@@ -64,6 +75,7 @@ class User implements UserInterface
     }
 
     /**
+     * Return email of user.
      * @return string|null
      */
     public function getEmail(): ?string
@@ -72,6 +84,8 @@ class User implements UserInterface
     }
 
     /**
+     * Give access to set user email.
+     * ATTENTION: It's not safe.
      * @param string $email
      * @return $this
      */
@@ -83,6 +97,7 @@ class User implements UserInterface
     }
 
     /**
+     * Return user first name.
      * @return string|null
      */
     public function getFirstName(): ?string
@@ -91,6 +106,7 @@ class User implements UserInterface
     }
 
     /**
+     * Give access to change user first name.
      * @param string $firstName
      * @return $this
      */
@@ -102,6 +118,7 @@ class User implements UserInterface
     }
 
     /**
+     * Return user last name.
      * @return mixed
      */
     public function getLastName()
@@ -110,6 +127,7 @@ class User implements UserInterface
     }
 
     /**
+     * Give access to change user last name.
      * @param mixed $lastName
      */
     public function setLastName($lastName): void
@@ -121,7 +139,6 @@ class User implements UserInterface
 
     /**
      * A visual identifier that represents this user.
-     *
      * @see UserInterface
      */
     public function getUserIdentifier(): string

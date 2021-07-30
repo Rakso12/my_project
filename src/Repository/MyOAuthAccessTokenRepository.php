@@ -10,6 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use DateTime;
 
 /**
+ * Repository for OAuth Access Token Repository.
  * @method MyOAuthAccessToken|null find($id, $lockMode = null, $lockVersion = null)
  * @method MyOAuthAccessToken|null findOneBy(array $criteria, array $orderBy = null)
  * @method MyOAuthAccessToken[]    findAll()
@@ -31,6 +32,7 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function to generate token string.
      * @return string
      * @throws \Exception
      */
@@ -41,6 +43,9 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
     }
 
     /**
+     * Function which generate new token record.
+     * Set username, token and client_id the same like parameters.
+     * Scopes = "", isActive = "true" and set datetime.
      * @param $username
      * @param $token
      * @param $client_id
@@ -66,6 +71,7 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
     }
 
     /**
+     * Return the token access scopes string.
      * @param $token
      * @return array|false|string[]
      */
@@ -79,6 +85,7 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
     }
 
     /**
+     * Checks if the token exist.
      * @param $token
      * @return bool
      */
@@ -92,6 +99,12 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
         return false;
     }
 
+    /**
+     * Checks if the token term is up-to-date.
+     * @param $token
+     * @return bool
+     * @throws \Exception
+     */
     public function checkTokenTerm($token): bool
     {
         $isExist = $this->findOneBy(['identifier' => $token]);
@@ -110,6 +123,12 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
         return false;
     }
 
+    /**
+     * Checks if user is owner of token.
+     * @param $author
+     * @param $token
+     * @return bool
+     */
     public function checkTokenUser($author, $token): bool
     {
         $isExist = $this->findOneBy(['identifier' => $token]);
@@ -120,6 +139,12 @@ class MyOAuthAccessTokenRepository extends ServiceEntityRepository
         return false;
     }
 
+    /**
+     * Checks if the given scope is in the scopes.
+     * @param $scope
+     * @param $token
+     * @return bool
+     */
     public function checkScope($scope, $token): bool
     {
         $scopeArray = $this->getTokenScope($token);
